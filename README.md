@@ -28,9 +28,5 @@ The ability to move the space station to a different location in space, making t
 The ability to set up permit mines on planets with your miners and leave the mine to work independently on multiple planets.
 The ability to build a second space station independent from the first but still owned by the same player.
 
-Group
-Mason Friesen
-Jack Heshka
-
 Software
 VS code

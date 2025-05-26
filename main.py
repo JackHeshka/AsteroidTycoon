@@ -1,5 +1,8 @@
 import math as math
-
+import factory
+import miner
+import planet
+import player
 
 print("======================================================================")
 print("This game is an aventrue based space exploration game. " \

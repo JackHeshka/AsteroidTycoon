@@ -4,7 +4,7 @@ import miner
 import planet
 import player
 import galaxy
-import station as station
+import station as S
 
 print("======================================================================")
 print("This game is an aventrue based space exploration game. " \
@@ -12,7 +12,6 @@ print("This game is an aventrue based space exploration game. " \
 "\nand gathering resorces from mines. You will then be able to " \
 "\ntrade these resources for money, which you can use to build factorys, " \
 "\nand expand you spaces station and mining oporation. ")
-print("======================================================================\n")
 
 game_play_options = {"Explore Galaxy": None,
                      "Explore Space Station": None,
@@ -25,16 +24,16 @@ game_play_options = {"Explore Galaxy": None,
                      "Upgrade Ship": None,
                      "Exit Game": None}
 
-def load_station_map(filename):
-    station_map = []
+def load_station_map(filename: str):
+###this will load in to the program the map that is stroed into the syatem at the start of the game
+    station_map: list[list[int]] = []
     with open(filename, 'r') as file:
         for line in file:
-            row = [int(x) for x in line.strip().split()]
+            row: list[int] = [int(x) for x in line.strip().split()]
             station_map.append(row)
     return station_map
 
-# Usage:
-baseStation = load_station_map('station_map.txt')
+S.baseStation = load_station_map('station_map.txt')
 
 def main_menu():
     while True:
@@ -62,4 +61,7 @@ def main_menu():
             print(f"Invalid choice. {e}")
             print("======================================================================\n")
 
-main_menu()
+##main_menu()
+
+new_station = S.spaceStation()
+new_station.printStation()  # Print the station layout

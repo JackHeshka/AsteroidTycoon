@@ -137,6 +137,3 @@ class spaceStation:
 
     def listOfSections(self):
         pass
-
-station = spaceStation()
-station.printStation()

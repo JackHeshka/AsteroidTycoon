@@ -1,0 +1,52 @@
+Iron 
+Coal
+Copper
+Gold
+Aluminum 
+Plutonium
+Zinc
+Diamond
+Lead
+Lithium
+
+#drill upgrades
+cooper + Lithium = battery #drill speed
+diamond + Lead = drill reinforcement 
+Aluminum + Iron = drill length upgrade 
+
+#Base price
+Iron    = $10
+Coal    = $7
+Copper  = $7
+Gold    = $10
+Aluminum    = #3
+Plutonium   = #13
+Zinc    = 13
+Diamond = $20
+Lead    = $15
+Lithium = $13
+
+#better ores sells for more
+Iron x4 = reinforced Iron
+Coal x4 = reinforced Coal
+Copper x4 = reinforced Copper
+Gold x4 = reinforced Gold
+Aluminum x4 = reinforced Aluminum
+Plutonium x4 = reinforced Plutonium
+Zinc x4 = reinforced Zinc
+Diamond x4 = reinforced Diamond
+Lead x4 = reinforced Lead
+Lithium x4 = reinforced Lithium
+
+#reinforced price 
+reinforced Iron    = $20
+reinforced Coal    = $17
+reinforced Copper  = $17
+reinforced Gold    = $20
+reinforced Aluminum    = #13
+reinforced Plutonium   = #23
+reinforced Zinc    = $23
+reinforced Diamond = $30
+reinforced Lead    = $25
+reinforced Lithium = $23
+

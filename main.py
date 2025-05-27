@@ -9,7 +9,7 @@ print("This game is an aventrue based space exploration game. " \
 "\nYou will be able to move around the galaxy, explore planets, " \
 "\nand gathering resorces from mines. You will then be able to " \
 "\ntrade these resources for money, which you can use to build factorys, " \
-"\nand expand you spaces station and mining oporation. ")
+"\nand expand you spaces station and mining operation. ")
 print("======================================================================\n")
 
 game_play_options = {"Explore Galaxy": None,

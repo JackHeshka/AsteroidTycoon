@@ -4,7 +4,7 @@ import miner
 import planet
 import player
 import galaxy
-import station as s
+import station as station
 
 print("======================================================================")
 print("This game is an aventrue based space exploration game. " \
@@ -62,7 +62,4 @@ def main_menu():
             print(f"Invalid choice. {e}")
             print("======================================================================\n")
 
-#main_menu()
-
-station = s.spaceStation()
-station.printStation()
+main_menu()

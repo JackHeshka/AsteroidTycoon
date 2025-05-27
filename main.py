@@ -3,13 +3,15 @@ import factory
 import miner
 import planet
 import player
+import galaxy
+import station
 
 print("======================================================================")
 print("This game is an aventrue based space exploration game. " \
 "\nYou will be able to move around the galaxy, explore planets, " \
 "\nand gathering resorces from mines. You will then be able to " \
 "\ntrade these resources for money, which you can use to build factorys, " \
-"\nand expand you spaces station and mining operation. ")
+"\nand expand you spaces station and mining oporation. ")
 print("======================================================================\n")
 
 game_play_options = {"Explore Galaxy": None,
@@ -22,6 +24,18 @@ game_play_options = {"Explore Galaxy": None,
                      "Expand Space Station": None,
                      "Upgrade Ship": None,
                      "Exit Game": None}
+
+def load_station_map(filename):
+    station_map = []
+    with open(filename, 'r') as file:
+        for line in file:
+            row = [int(x) for x in line.strip().split()]
+            station_map.append(row)
+    return station_map
+
+# Usage:
+baseStation = load_station_map('station_map.txt')
+
 def main_menu():
     while True:
         print("Welcome to the Space Exploration Game!")

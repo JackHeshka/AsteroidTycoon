@@ -1,25 +1,27 @@
 class player:
     money = 0
 
-    def __init__(self, name, age):
+    def __init__(self, name, age, station, starting_money):
         self.name = name
         self.age = age
-        
-        
+        self.station = station
+        self.money = starting_money
+        name = input("What is the name of your miner? ")
+        age = input("What is your age? ")
+        station = input("What will you call your main station")
         pass
 
-    def __str__(self):
-        pass
+    def get_money(self, amount):
+        if amount > 0:
+            self.money += amount 
+            print(f"{self.name} has {amount + self.money} of money left")
+        else:
+            print("you must add a posative integer")
 
-    def travel(self):
+    def buy(self):
+
+
         pass
 
     def interact(self):
         pass
-
-def get_player_name():
-    """
-    Prompts the player to input their name and stores it in the player dictionary.
-    """
-    player["name"] = input("Enter your name: ").strip()
-    print(f"Hello, {player['name']}! Welcome to the game.")

@@ -18,10 +18,15 @@ class player:
         else:
             print("you must add a posative integer")
 
-    def buy(self):
+    def send_money(self, amount):
+        if amount < self.money:
+            print("you do not have enough money")
+        elif amount <= 0:
+            print("number must be posative")
+        else:
+            amount -= self.money
+            print(f"{self.name} you have {self.money} dollars left")
 
-
-        pass
-
-    def interact(self):
-        pass
+    def money_left(self):
+        print(f"{self.name} you have {self.money} left")
+        return self.money

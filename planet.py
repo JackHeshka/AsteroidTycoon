@@ -6,47 +6,60 @@ class planet:
     location = ''
 
     def __init__(self):
-        pass
+        self.planetMap = self.resourceScatter()
 
     def resourceScatter(self):
         #Generate base plane
         surface = [
-            [None,None,None,None,None,None,None,None,None,None,None,None],
-            [None,None,None,None,None,None,None,None,None,None,None,None],
-            [None,None,None,None,None,None,None,None,None,None,None,None],
-            [None,None,None,None,None,None,None,None,None,None,None,None],
-            [None,None,None,None,None,None,None,None,None,None,None,None],
-            [None,None,None,None,None,None,None,None,None,None,None,None],
-            [None,None,None,None,None,None,None,None,None,None,None,None],
-            [None,None,None,None,None,None,None,None,None,None,None,None],
-            [None,None,None,None,None,None,None,None,None,None,None,None],
-            [None,None,None,None,None,None,None,None,None,None,None,None],
-            [None,None,None,None,None,None,None,None,None,None,None,None],
-            [None,None,None,None,None,None,None,None,None,None,None,None]
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None],
+            [None,None,None,None,None,None,None,None,None,None,None,None,None]
         ]
 
         #Random height sample points
-        for i in len(surface)/3:
-            for j in len(surface[i])/3:
+        for i in range(int(len(surface)/3)+1):
+            for j in range(int(len(surface[i])/3)+1):
                 surface[3*i][3*j] = r.random()
 
         #Linear interpolation
         #Vertical nodes
-        for i in surface:
+        for i in range(int(len(surface))):
             segment = i/3
-            for j in len(surface[i])/3:
-                surface[i][3*j] = self.lerp(surface[3*int(segment)][3*j],
+            for j in range(int(len(surface[i])/3)+1):
+                try:
+                    surface[i][3*j] = self.lerp(surface[3*int(segment)][3*j],
                                             surface[3*(int(segment)+1)][3*j],
                                             segment-int(segment))
+                except IndexError:
+                    surface[i][3*j] = self.lerp(surface[3*int(segment)][3*j],
+                                            0.5,
+                                            segment-int(segment))
+
         #Horizontal nodes
-        for i in len(surface)/3:
-            for j in surface[i]:
-                surface[3*i][j] = self.lerp(surface[3*i][3*int(segment)],
+        for i in range(int(len(surface)/3)+1):
+            for j in range(len(surface[i])):
+                segment = j/3
+                try:
+                    surface[3*i][j] = self.lerp(surface[3*i][3*int(segment)],
                                             surface[3*i][3*(int(segment)+1)],
                                             segment-int(segment))
+                except IndexError:
+                    surface[3*i][j] = self.lerp(surface[3*i][3*int(segment)],
+                                            0.5,
+                                            segment-int(segment))
         #Average over the surface
-        for i in len(surface):
-            for j in len(surface[i]):
+        for i in range(int(len(surface))):
+            for j in range(int(len(surface[i]))):
                 if surface[i][j] == None:
                     surface[i][j] = (self.lerp(
                         surface[3*round(i/3)][j],

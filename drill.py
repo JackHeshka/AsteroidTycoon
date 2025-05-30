@@ -1,5 +1,5 @@
-class miner:
-    def __init__(self):
+class drill:
+    def __init__(self, oreAbundance):
         pass
     
     def mine(self):

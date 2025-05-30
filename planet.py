@@ -1,12 +1,14 @@
 from math import *
 import random as r
+import drill as d
 
 class planet:
     planetMap = []
-    location = ''
+    drills = {}
 
     def __init__(self):
         self.planetMap = self.resourceScatter()
+        self.drills = self.initializeDrillVacancy()
 
     def resourceScatter(self):
         #Generate base plane
@@ -71,6 +73,19 @@ class planet:
                         (j/3) - floor(j/3)
                     ))/2
         return surface
+    
+    def initializeDrillVacancy(self):
+        ret = {}
+        for x in range(13):
+            for y in range(13):
+                ret[f'{x},{y}'] = None
+        return ret
+
+    def addDrill(self, x, y):
+        if self.drills[f'{x},{y}'] == None:
+            self.drills[f'{x},{y}'] = d.drill(self.planetMap[x][y])
+        else:
+            print("There is already a drill there!")
 
     def lerp(self, a, b, t):
         return (1-t)*a + t*b

@@ -1,11 +1,11 @@
 class player:
-    money = 0
-
     def __init__(self, name, starting_money):
         self.name = name
         self.money = starting_money
-
-
+        self.inventory = []
+        self.health = 100
+        
+        
     def get_money(self, amount):
         if amount > 0:
             self.money += amount 

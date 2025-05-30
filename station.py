@@ -142,6 +142,11 @@ class spaceStation:
     def addToStation(self, space_player:Pl.player):
         ###This will let the user spend the money that they have made to expand the space station###
         print("You have " + str(space_player.money) + "credits .")
+        for i in range(tile_types.__len__()):
+            print(str(i) + " - " + tile_types[i]["name"] + " - " + str(tile_types[i]["Cost"]) + " credits")
+        print("Please select a tile to add to your station.")
+        choice = int(input("Enter the number of the tile you want to add: "))
+        print("You have selected: " + tile_types[choice]["name"])
 
     def removeFromStation(self):
         pass

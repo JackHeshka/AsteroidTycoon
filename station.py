@@ -1,3 +1,5 @@
+import player as Pl
+
 baseStation = [[0, 0, 0, 0, 0, 0, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 0],
                [0, 0, 1, 0, 0, 0, 0, 0],
@@ -28,7 +30,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
         ],
         "name": "Hallway",
         "description": "A simple corridor.",
-        "Cost": 1
+        "Cost": 10
     },
     2: {
         "art": [
@@ -39,7 +41,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
         ],
         "name": "Lab",
         "description": "Science laboratory.",
-        "Cost": 0
+        "Cost": 30
     },
     3: {
         "art": [
@@ -50,7 +52,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
         ],
         "name": "Dock",
         "description": "Spaceship docking bay.",
-        "Cost": 0
+        "Cost": 20
     },
     4: {
         "art": [
@@ -61,7 +63,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
         ],
         "name": "Sleeping Quarters",
         "description": "Crew sleeping area.",
-        "Cost": 0
+        "Cost": 40
     },
     5: {
         "art": [
@@ -72,7 +74,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
         ],
         "name": "Factory",
         "description": "Manufacturing facility One.",
-        "Cost": 0
+        "Cost": 60
     },
     6: {
         "art": [
@@ -83,7 +85,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
         ],
         "name": "Factory",
         "description": "Manufacturing facility Two.",
-        "Cost": 0
+        "Cost": 60
     },
     7: {
         "art": [
@@ -94,7 +96,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
         ],
         "name": "Factory",
         "description": "Manufacturing facility Three.",
-        "Cost": 0
+        "Cost": 60
     },
     8: {
         "art": [
@@ -105,7 +107,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
         ],
         "name": "Factory",
         "description": "Manufacturing facility Four.",
-        "Cost": 0
+        "Cost": 60
     }
 }
 
@@ -137,9 +139,9 @@ class spaceStation:
             for line in lines:
                 print(line)
 
-    def addToStation(self):
+    def addToStation(self, space_player:Pl.player):
         ###This will let the user spend the money that they have made to expand the space station###
-        pass
+        print("You have " + str(space_player.money) + "credits .")
 
     def removeFromStation(self):
         pass

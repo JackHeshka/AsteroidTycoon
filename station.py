@@ -1,9 +1,9 @@
 baseStation = [[0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 1, 1, 0, 0, 0, 0, 0],
-               [0, 2, 1, 3, 1, 1, 5, 0],
-               [0, 2, 1, 3, 0, 0, 0, 0],
-               [0, 2, 1, 3, 0, 0, 0, 0],
-               [0, 0, 0, 5, 0, 0, 0, 0]]
+               [0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 1, 0, 0, 0, 0, 0],
+               [0, 0, 2, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0]]
 
 from typing import Dict, Any
 
@@ -108,6 +108,15 @@ tile_types: Dict[int, Dict[str, Any]] = {
         "Cost": 0
     }
 }
+
+def load_station_map(filename: str):
+###this will load in to the program the map that is stroed into the syatem at the start of the game
+    station_map: list[list[int]] = []
+    with open(filename, 'r') as file:
+        for line in file:
+            row: list[int] = [int(x) for x in line.strip().split()]
+            station_map.append(row)
+    return station_map
                
 class factory:
     def __init__(self):

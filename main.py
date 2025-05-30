@@ -24,16 +24,7 @@ game_play_options = {"Explore Galaxy": None,
                      "Upgrade Ship": None,
                      "Exit Game": None}
 
-def load_station_map(filename: str):
-###this will load in to the program the map that is stroed into the syatem at the start of the game
-    station_map: list[list[int]] = []
-    with open(filename, 'r') as file:
-        for line in file:
-            row: list[int] = [int(x) for x in line.strip().split()]
-            station_map.append(row)
-    return station_map
-
-S.baseStation = load_station_map('station_map.txt')
+S.baseStation = S.load_station_map('station_map.txt')
 
 def main_menu():
     while True:

@@ -4,8 +4,7 @@ class player:
         self.money = starting_money
         self.inventory = []
         self.health = 100
-        
-        
+
     def get_money(self, amount):
         if amount > 0:
             self.money += amount 

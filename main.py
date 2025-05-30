@@ -2,9 +2,9 @@ import math as math
 import factory
 import miner
 import planet
-import player
+import player as Pl
 import galaxy
-import station as S
+import station as St
 
 print("======================================================================")
 print("This game is an aventrue based space exploration game. " \
@@ -24,7 +24,7 @@ game_play_options = {"Explore Galaxy": None,
                      "Upgrade Ship": None,
                      "Exit Game": None}
 
-S.baseStation = S.load_station_map('station_map.txt')
+St.baseStation = St.load_station_map('station_map.txt')
 
 def main_menu():
     while True:
@@ -42,7 +42,7 @@ def main_menu():
             if choice in map(str, range(1, len(game_play_options) + 1)):
                 selected_option = list(game_play_options.keys())[int(choice) - 1]
                 print(f"You selected: {selected_option}")
-                ##game_play_options[selected_option]() ##for later when we have functions for each option:
+                game_play_options[selected_option]() ##for later when we have functions for each option:
             elif not choice.isdigit():
                 raise ValueError("Choice is not a number.")
             elif choice not in range(1, len(game_play_options) + 1):
@@ -54,5 +54,9 @@ def main_menu():
 
 ##main_menu()
 
-new_station = S.spaceStation()
+player_name = input("Enter your player name: ")
+player_class = input("Enter your player class (e.g., Explorer, Trader, Miner): ")
+space_player = Pl.player(player_name, 1000)
+
+new_station = St.spaceStation()
 new_station.printStation()  # Print the station layout

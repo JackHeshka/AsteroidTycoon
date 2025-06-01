@@ -1,23 +1,25 @@
-class player:
-    def __init__(self, name, starting_money):
-        self.name = name
-        self.money = starting_money
-        self.inventory = []
-        self.health = 100
+from typing import List
 
-    def get_money(self, amount):
+class player:
+    def __init__(self, name: str, starting_money: int):
+        self.name: str = name
+        self.money: int = int(starting_money)
+        self.inventory: List[str] = []
+        self.health: int = 100
+
+    def get_money(self, amount: int):
         if amount > 0:
             self.money += amount 
         else:
             print("you must add a posative integer")
 
-    def spend_money(self, amount):
-        if amount < self.money:
+    def spend_money(self, amount: int):
+        if amount > self.money:
             print("you do not have enough money")
         elif amount <= 0:
             print("number must be posative")
         else:
-            amount -= self.money
+            self.money -= amount
 
     def money_left(self):
         return self.money

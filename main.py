@@ -8,15 +8,6 @@ import station as St
 ## This program would not work without the typing modual
 from typing import Callable, Dict
 
-print("================================================================================")
-print("This game is an aventrue based space exploration game. " \
-"\nYou will be able to move around the galaxy, explore planets, " \
-"\nand gathering resorces from mines. You will then be able to " \
-"\ntrade these resources for money, which you can use to build factorys, " \
-"\nand expand you spaces station and mining oporation. ")
-print("================================================================================")
-
-
 def explore_galaxy():
     """This function will allow the player to explore the planets in the galaxy."""
     print("Exploring the galaxy... (feature coming soon)")
@@ -35,7 +26,7 @@ def player_inventory():
 def extract_resources():
     """This function will allow the player to pick a planet that they have a mine on and 
     gather the resorces that they have mined well they have been away from the planet."""
-    print("Extracting resources... (feature coming soon)") # Add drill mining here
+    print("Extracting resources... (feature coming soon)")
 
 
 def establish_mining_operation():
@@ -54,12 +45,11 @@ def use_factory():
     to build products that they can then trade for more credits than the raw resource."""
     print("Building factory... (feature coming soon)")
 
-
 def expand_space_station():
     """This function will allow the player to expand their space station and build factories."""
     new_station.printStation()  # Print the station layout
     print("=================================================================================")
-    new_station.addToStation(space_player)  # Allow player to expand the station
+    new_station.buyTile(space_player)  # Allow player to expand the station
 
 
 def exit_game():
@@ -104,13 +94,35 @@ def main_menu():
             print(f"Invalid choice. {e}")
             print("================================================================================\n")
 
+print("================================================================================")
+print("This game is an aventrue based space exploration game. " \
+"\nYou will be able to move around the galaxy, explore planets, " \
+"\nand gathering resorces from mines. You will then be able to " \
+"\ntrade these resources for money, which you can use to build factorys, " \
+"\nand expand you spaces station and mining oporation. ")
+print("================================================================================")
 
-## Main game initialization lets the player enter their name and sets up the space station.
-player_name = input("Enter your player name: ")
-space_player = Pl.player(player_name, 1000)
-## Create a new space station instance
-new_station = St.spaceStation()
-St.baseStation = St.load_station_map('station_map.txt')
+
+while True:
+    try:
+        choice = input("Do you want to load a previous game? (yes/no): ").strip().lower()
+        if choice == "no":
+        ## for new players, we will create a new player and space station that will later be saved to a file.
+            player_name = input("Please enter a player name: ")
+            starting_money = 1000  # Set a default starting money value
+            space_player = Pl.player(player_name, starting_money)
+            new_station = St.spaceStation(player_name)
+            break
+        elif choice == "yes":
+            ## this will load in the players past game, and station layout.
+            player_name = input("Please enter your player name: ")
+            station_file = player_name + "_station.txt"
+            player_file = player_name + "_player.txt"
+            break
+        else:
+            raise ValueError("Invalid input. Please enter 'yes' or 'no'.")
+    except ValueError as e:
+        print(f"Error: {e}. Please try again.")
 print("================================================================================")
 print("Loading your space station layout...")
 new_station.printStation()  # Print the station layout

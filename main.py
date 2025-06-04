@@ -40,10 +40,12 @@ def trade_resources():
     print("Trading resources... (feature coming soon)")
 
 
-def use_factory():
-    """This function will allow the player to use a factory that they have built before,
-    to build products that they can then trade for more credits than the raw resource."""
-    print("Building factory... (feature coming soon)")
+def add_station():
+    """This function will allow the player to build a new space station."""
+    new_station.printStation()  # Print the station layout
+    print("=================================================================================")
+    new_station.addTile()  # Allow player to add a tile to the station
+    
 
 def expand_space_station():
     """This function will allow the player to expand their space station and build factories."""
@@ -61,13 +63,13 @@ def exit_game():
 ## This dictionary holds the options for the game play menu.
 game_play_options: Dict[str, Callable[[], None]] = {
     "Explore Galaxy": explore_galaxy,
-    "Explore Space Station": explore_space_station,
+    "*Explore Space Station": explore_space_station,
     "Player Inventory": player_inventory,
     "Extract Resources": extract_resources,
     "Establish Mining Operation": establish_mining_operation,
     "Trade Resources": trade_resources,
-    "Build Factory": use_factory,
-    "Expand Space Station": expand_space_station,
+    "*Build Space Station": add_station,
+    "*Buy Space Station Sections": expand_space_station,
     "Exit Game": exit_game
 }
 
@@ -80,19 +82,18 @@ def main_menu():
         for index, option in enumerate(options_list, start=1):
             print(f"{index}. {option}")
         print("\n================================================================================")
-        choice = input("Select an option (1-{}): ".format(len(options_list)))
+        choice = input(f"Enter Number (1-{len(options_list)}): ")
         print("================================================================================")
         try:
             if choice in map(str, range(1, len(options_list) + 1)):
                 selected_option = options_list[int(choice) - 1]
                 game_play_options[selected_option]() ##for later when we have functions for each option:
             elif not choice.isdigit():
-                raise ValueError("Choice is not a number.")
+                raise ValueError("Enter a Number")
             elif int(choice) not in range(1, len(options_list) + 1):
-                raise ValueError("Choice not in valid range.")
+                raise ValueError("Choice a Number in range")
         except ValueError as e:
-            print(f"Invalid choice. {e}")
-            print("================================================================================\n")
+            print(f"Invalid choice. {e}. Error: Please try again.")
 
 print("================================================================================")
 print("This game is an aventrue based space exploration game. " \
@@ -105,22 +106,24 @@ print("=========================================================================
 
 while True:
     try:
-        choice = input("Do you want to load a previous game? (yes/no): ").strip().lower()
+        print("Do you want to load a previous game?")
+        choice = input("Enter (yes/no): ").strip().lower()
+        print("================================================================================")
         if choice == "no":
         ## for new players, we will create a new player and space station that will later be saved to a file.
-            player_name = input("Please enter a player name: ")
+            player_name = input("Please create a player name: ")
             starting_money = 1000  # Set a default starting money value
             space_player = Pl.player(player_name, starting_money)
             new_station = St.spaceStation(player_name)
             break
         elif choice == "yes":
             ## this will load in the players past game, and station layout.
-            player_name = input("Please enter your player name: ")
+            player_name = input("Please enter your username: ")
             station_file = player_name + "_station.txt"
             player_file = player_name + "_player.txt"
             break
         else:
-            raise ValueError("Invalid input. Please enter 'yes' or 'no'.")
+            raise ValueError("Invalid input. Please enter 'yes' or 'no'")
     except ValueError as e:
         print(f"Error: {e}. Please try again.")
 print("================================================================================")
@@ -128,5 +131,10 @@ print("Loading your space station layout...")
 new_station.printStation()  # Print the station layout
 print("================================================================================")
 print("Welcome to the Space Exploration Game!")
-print(f"Commander {space_player.name}, your account balance is {space_player.money:,} credits.")
+print(f"Commander {space_player.name}, your account balance is {space_player.money} credits.")
+print("Your current space station layout is above.")
+print("================================================================================")
+print("Here is the main menu where you can explore the galaxy,")
+print("trade resources, and manage your space station.")
+print("For the best experience, please expand you termanal window.")
 main_menu()  # Start the main menu loop

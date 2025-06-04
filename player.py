@@ -24,7 +24,7 @@ class player:
                                                   "Zinc": 0,
                                                   "Diamond": 0,
                                                   "Lead": 0,
-                                                 "Lithium": 0}
+                                                  "Lithium": 0}
         
         self.compound_inventory: dict[str, int] = {"Iron": 0,
                                                    "Coal": 0,

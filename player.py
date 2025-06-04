@@ -4,7 +4,39 @@ class player:
     def __init__(self, name: str, starting_money: int):
         self.name: str = name
         self.money: int = int(starting_money)
-        self.inventory: List[str] = []
+        self.raw_inventory: dict[str, int] = {"Iron": 0,
+                                              "Coal": 0,
+                                              "Copper": 0,
+                                              "Gold": 0,
+                                              "Aluminum": 0,
+                                              "Plutonium": 0,
+                                              "Zinc": 0,
+                                              "Diamond": 0,
+                                              "Lead": 0,
+                                              "Lithium": 0}
+
+        self.refined_inventory: dict[str, int] = {"Iron": 0,
+                                                  "Coal": 0,
+                                                  "Copper": 0,
+                                                  "Gold": 0,
+                                                  "Aluminum": 0,
+                                                  "Plutonium": 0,
+                                                  "Zinc": 0,
+                                                  "Diamond": 0,
+                                                  "Lead": 0,
+                                                 "Lithium": 0}
+        
+        self.compound_inventory: dict[str, int] = {"Iron": 0,
+                                                   "Coal": 0,
+                                                   "Copper": 0,
+                                                   "Gold": 0,
+                                                   "Aluminum": 0,
+                                                   "Plutonium": 0,
+                                                   "Zinc": 0,
+                                                   "Diamond": 0,
+                                                   "Lead": 0,
+                                                   "Lithium": 0}
+
         self.health: int = 100
 
     def get_money(self, amount: int):

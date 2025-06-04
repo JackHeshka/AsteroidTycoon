@@ -1,6 +1,11 @@
+import time as t
+
 class drill:
     def __init__(self, oreAbundance):
-        pass #Time to add productivity
+        self.curr = t.time() #Time to add productivity
+        self.productivity = oreAbundance
     
     def mine(self):
-        pass
+        produced = int(t.time - self.curr)*self.productivity
+        self.curr = t.time
+        return produced

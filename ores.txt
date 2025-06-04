@@ -1,3 +1,4 @@
+These are the ores that player can mine -
 Iron 
 Coal
 Copper
@@ -9,44 +10,30 @@ Diamond
 Lead
 Lithium
 
-#drill upgrades
-cooper + Lithium = battery #drill speed
-diamond + Lead = drill reinforcement 
-Aluminum + Iron = drill length upgrade 
 
-#Base price
-Iron    = $10
-Coal    = $7
-Copper  = $7
-Gold    = $10
-Aluminum    = #3
-Plutonium   = #13
-Zinc    = 13
-Diamond = $20
-Lead    = $15
-Lithium = $13
+These are the prices that the tradeHub will pay for the raw ores
+Tron    = 15
+Coal    = 5
+Copper  = 40
+Gold    = 100
+Aluminum    = 20
+Plutonium   = 80
+Zinc    = 10
+Diamond = 120
+Lead    = 30
+Lithium = 80
 
-#better ores sells for more
-Iron x4 = reinforced Iron
-Coal x4 = reinforced Coal
-Copper x4 = reinforced Copper
-Gold x4 = reinforced Gold
-Aluminum x4 = reinforced Aluminum
-Plutonium x4 = reinforced Plutonium
-Zinc x4 = reinforced Zinc
-Diamond x4 = reinforced Diamond
-Lead x4 = reinforced Lead
-Lithium x4 = reinforced Lithium
+These are the prices that the tradeHub will pay for the refined ores
+reinforced Iron    = 45
+reinforced Coal    = 15
+reinforced Copper  = 120
+reinforced Gold    = 400
+reinforced Aluminum    = 60
+reinforced Plutonium   = 240
+reinforced Zinc    = 30
+reinforced Diamond = 360
+reinforced Lead    = 90
+reinforced Lithium = 240
 
-#reinforced price 
-reinforced Iron    = $20
-reinforced Coal    = $17
-reinforced Copper  = $17
-reinforced Gold    = $20
-reinforced Aluminum    = #13
-reinforced Plutonium   = #23
-reinforced Zinc    = $23
-reinforced Diamond = $30
-reinforced Lead    = $25
-reinforced Lithium = $23
+With some factorys you will be able to combine ores into new materials to get even higher prices
 

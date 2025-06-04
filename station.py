@@ -182,13 +182,20 @@ class spaceStation:
     def buyTile(self, space_player: Pl.player):
         """This function allows the player to add a tile to their space station, by chosing from a list of available tiles."""
         print("You have " + str(space_player.money) + " credits.") ## prints the tile available to the player
-        print("Select the tile type you would like to add to your space station from the list below.")
+        print("Select a tile to buy:")
         print("================================================================================\n")
         for i in range(tile_types.__len__()):
             print(str(i+1) + " - " + tile_types[i]["name"] + " = " + str(tile_types[i]["Cost"]) + " credits")
         print("\n================================================================================")
-        choice = int(input("Enter the tile you want to add: "))
-        print("================================================================================")
+        while True:
+            try:
+                choice = int(input("Enter Number: "))
+                if choice < 1 or choice > len(tile_types):
+                    raise ValueError("Choice must be between 1 and " + str(len(tile_types)))
+                break
+            except ValueError as e:
+                print(f"Error: {e}. Please try again.")
+                print("=================================================================================")
         selected_tile = choice - 1
         ## check if the player has enough money to buy the tile
         if selected_tile in tile_types and space_player.money >= tile_types[selected_tile]["Cost"]:
@@ -196,13 +203,17 @@ class spaceStation:
             space_player.spend_money(tile_types[selected_tile]["Cost"])
             print(f"You have bought a {tile_types[selected_tile]['name']}.")
             print(f"Your new balance is {space_player.money} credits.")
+            print("=================================================================================")
             ## update the tile count of unused tilesin the station
             self.unused_tiles[selected_tile] += 1
             while True:
                 try:
-                    choice = input("would you like to add this tile to your space station? (yes/no): ").strip().lower()
+                    print("would you like to add this tile to your space station?")
+                    choice = input("Enter (yes/no): ").strip().lower()
+                    print("=================================================================================")
                     if choice == "yes":
-                        self.addTile()
+                        self.add(selected_tile)
+                        self.unused_tiles[selected_tile] -= 1
                         break
                     elif choice == "no":
                         print("You can add the tile later.")
@@ -221,39 +232,54 @@ class spaceStation:
         by checking what spaces are available in the base station and then allowing the player to select"""
         while True:
             try:
-                print("1 - Add Unused Tile")
+                print("How would you like to improve your space station?")
+                print("\n1 - Add Unused Tile")
                 print("2 - ReBuild Station")
-                choice = input("Enter choice: ")
+                print("\n=================================================================================")
+                choice = input("Enter Number: ")
+                print("=================================================================================")
+
                 if choice == "1":
                     """ This will print the unused tiles that the player has."""
-                    print("These are your unused tiles:")
-                    available_tiles = [tile_id for tile_id, count in self.unused_tiles.items() if count > 0]
-                    for idx, tile_id in enumerate(available_tiles, start=1):
-                        print(f"{idx}: {tile_types[tile_id]['name']} - {self.unused_tiles[tile_id]} available")
-                    try:
-                        tile_choice_input = int(input("Enter the tile number (as shown on the left) you want to add: "))
-                        if tile_choice_input <= len(available_tiles):
-                            tile_id = available_tiles[tile_choice_input - 1]
-                            self.unused_tiles[tile_id] -= 1
-                            self.add(tile_id)
-                        else:
-                            raise ValueError("Invalid tile choice or no tiles available.")
-                    except ValueError as e:
-                        print(f"Error: {e}. Please try again.")
-                    break
+                    print("These are your unused tiles:\n")
                 elif choice == "2":
                     ## this will clear the base station and retain the tile count to rebuild the station
+                    print("Here are all your tiles:\n")
+                    self.listOfStationTiles()  # Ensure tile_in_station is up-to-date
+                    for i in range(len(self.tile_in_station)):
+                        self.unused_tiles[i] += self.tile_in_station[i]  # Add current station tiles to unused
+                        self.tile_in_station[i] = 0  # Clear tile_in_station
                     for r in range(len(self.base_station)):
                         for c in range(len(self.base_station[r])):
                             self.base_station[r][c] = 0
-                    self.add()  ## call the add function to place the tile
-                    pass
                 else:
                     raise ValueError("Please enter 1 or 2")
-                break
             except ValueError as e:
                 print(f"Invalid input: {e}. Please try again.")
-
+            loop = True
+            while loop == True:
+                available_tiles = [tile_id for tile_id, count in self.unused_tiles.items() if count > 0 and tile_id != 0]
+                if available_tiles == []:
+                    print("You have no unused tiles to add.")
+                    loop = False
+                    return
+                for idx, tile_id in enumerate(available_tiles, start=1):
+                    print(f"{idx}: {tile_types[tile_id]['name']} - {self.unused_tiles[tile_id]} available")
+                print("\n=================================================================================")
+                try:
+                    tile_choice_input = int(input("Enter Number: "))
+                    if tile_choice_input <= len(available_tiles):
+                        tile_id = available_tiles[tile_choice_input - 1]
+                        self.unused_tiles[tile_id] -= 1
+                        if choice == "1":
+                            loop = False
+                        self.add(tile_id)
+                    else:
+                        raise ValueError("Invalid tile choice or no tiles available.")
+                except ValueError as e:
+                    print(f"Error: {e}. Please try again.")
+            break  # Exit the loop
+            
 
     def add(self, tile_to_add: int):
         """This function will add a tile to the space station by allowing the player to select a position."""

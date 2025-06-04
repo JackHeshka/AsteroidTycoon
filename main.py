@@ -1,9 +1,7 @@
 import math as math
-## import factory
-## import miner
-## import planet
 import player as Pl
-## import galaxy
+import tradeHub as tHub
+import factory as Fc
 import station as St
 ## This program would not work without the typing modual
 from typing import Callable, Dict
@@ -12,7 +10,11 @@ def explore_galaxy():
     """This function will allow the player to explore the planets in the galaxy."""
     print("Exploring the galaxy... (feature coming soon)")
 
-
+def use_factory():
+    """This function will allow the player to use a factory to refine resources."""
+    new_factory.use_factory()  # Call the method to use the factory
+    print("=================================================================================")
+ 
 def explore_space_station():
     """This function will allow the player to explore the space station."""
     new_station.printStation()
@@ -63,6 +65,7 @@ def exit_game():
 ## This dictionary holds the options for the game play menu.
 game_play_options: Dict[str, Callable[[], None]] = {
     "Explore Galaxy": explore_galaxy,
+    "*Use Factory": use_factory,
     "*Explore Space Station": explore_space_station,
     "Player Inventory": player_inventory,
     "Extract Resources": extract_resources,
@@ -115,6 +118,7 @@ while True:
             starting_money = 1000  # Set a default starting money value
             space_player = Pl.player(player_name, starting_money)
             new_station = St.spaceStation(player_name)
+            new_factory = Fc.Factory()
             break
         elif choice == "yes":
             ## this will load in the players past game, and station layout.

@@ -87,5 +87,16 @@ class planet:
         else:
             print("There is already a drill there!")
 
+    def groundSurvey(self, x, y):
+        tile = self.planetMap[x][y]
+        if tile > 75:
+            print(f'{100*tile}% Ore Concentration, very good!')
+        elif tile > 50:
+            print(f'{100*tile}% Ore Concentration, decent patch.')
+        elif tile > 25:
+            print(f'{100*tile}% Ore Concentration, less than ideal.')
+        else:
+            print(f'{100*tile}% Ore Concentration, rather awful.')
+
     def lerp(self, a, b, t):
         return (1-t)*a + t*b

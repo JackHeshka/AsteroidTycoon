@@ -133,7 +133,15 @@ class factory:
 
 class spaceStation:
     def __init__(self):
-        pass
+        self.tile_in_station = {0: 0,
+                                1: 0,
+                                2: 0,
+                                3: 0,
+                                4: 0,
+                                5: 0,
+                                6: 0,
+                                7: 0,
+                                8: 0}
 
     def printStation(self):
         """This function prints the current layout of the space station."""
@@ -152,6 +160,7 @@ class spaceStation:
         """This function allows the player to add a tile to their space station."""
         ## prints the tile available to the player
         print("You have " + str(space_player.money) + " credits.")
+        print("Select the tile type you would like to add to your space station.")
         print("================================================================================\n")
         for i in range(tile_types.__len__()):
             print(str(i+1) + " - " + tile_types[i]["name"] + " = " + str(tile_types[i]["Cost"]) + " credits")
@@ -159,70 +168,77 @@ class spaceStation:
         choice = int(input("Enter the tile you want to add: "))
         print("================================================================================")
         selected_tile = choice - 1
-        print("You have selected: " + tile_types[selected_tile]["name"])
         ## chechs if the player has enough money to buy the tile
         if selected_tile in tile_types and space_player.money >= tile_types[selected_tile]["Cost"]:
             ## removes the cost of the tile from the player's money
             space_player.spend_money(tile_types[selected_tile]["Cost"])
             print(f"You have bought a {tile_types[selected_tile]['name']}.")
             print(f"Your new balance is {space_player.money} credits.")
-            print("Where would you like to place it?")
-            print("================================================================================")
-            self.printStation()
-            """I was having issues with the types giving me errors this is a workarounds that worked for me."""
-            numbered_map: List[List[Optional[int]]] = []
-            position_map: dict[int, tuple[int, int]] = {}  ## Maps number to (row, col)
-            counter = 1 ## Start numbering from 1 listing the positions
-            for r, row_vals in enumerate(baseStation):
-                numbered_row: List[Optional[int]] = []
-                for c, val in enumerate(row_vals):
-                    if val == 0:
-                        numbered_row.append(counter)
-                        position_map[counter] = (r, c)
-                        counter += 1
-                    else:
-                        numbered_row.append(None)
-                numbered_map.append(numbered_row)
-
-            ## Print the station with numbers centered in empty spaces like the other print tile
-            print("\nSelect a position to place your tile:")
-            for row_idx, row in enumerate(baseStation):
-                lines = [""] * 4
-                for col_idx, col in enumerate(row):
-                    cell = tile_types.get(col, tile_types[0])
-                    if col == 0 and numbered_map[row_idx][col_idx] is not None:
-                        num_str = str(numbered_map[row_idx][col_idx])
-                        # Center the number in the art
-                        art = [
-                            "**********",
-                            "*{:^8s}*".format(num_str),
-                            "**********",
-                            "**********"
-                        ]
-                    else:
-                        art = cell["art"]
-                    for i in range(4):
-                        lines[i] += art[i]
-                for line in lines:
-                    print(line)
-            print("\n================================================================================")
-            try:
-                pos_choice = int(input("Enter the number of the position to place your tile: "))
-                if pos_choice in position_map:
-                    row, col = position_map[pos_choice]
-                    ## adds the tile to the base station 
-                    baseStation[row][col] = selected_tile
-                    print(f"Tile placed at ({row}, {col}).")
-                    self.printStation()
-            except ValueError:
-                print("Invalid input. Please enter a number.")
-            else:
-                print("Invalid position or position already occupied.")
+            self.addtile(selected_tile)
         else:
             print("Invalid choice or insufficient funds.")
+
+    def addtile(self, selected_tile):
+        """This function allows the player to select a location for the tile."""
+        print("Where would you like to place it?")
+        print("================================================================================\n")
+        """I was having issues with the types giving me errors this is a workarounds that worked for me."""
+        numbered_map: List[List[Optional[int]]] = []
+        position_map: dict[int, tuple[int, int]] = {}  ## Maps number to (row, col)
+        counter = 1 ## Start numbering from 1 listing the positions
+        for r, row_vals in enumerate(baseStation):
+            numbered_row: List[Optional[int]] = []
+            for c, val in enumerate(row_vals):
+                if val == 0:
+                    numbered_row.append(counter)
+                    position_map[counter] = (r, c)
+                    counter += 1
+                else:
+                    numbered_row.append(None)
+            numbered_map.append(numbered_row)
+
+        ## Print the station with numbers centered in empty spaces like the other print tile
+        ##print("\nSelect a position to place your tile:")
+        for row_idx, row in enumerate(baseStation):
+            lines = [""] * 4
+            for col_idx, col in enumerate(row):
+                cell = tile_types.get(col, tile_types[0])
+                if col == 0 and numbered_map[row_idx][col_idx] is not None:
+                    num_str = str(numbered_map[row_idx][col_idx])
+                    # Center the number in the art
+                    art = [
+                        "**********",
+                        "*{:^8s}*".format(num_str),
+                        "**********",
+                        "**********"
+                    ]
+                else:
+                    art = cell["art"]
+                for i in range(4):
+                    lines[i] += art[i]
+            for line in lines:
+                print(line)
+        print("\n================================================================================")
+        try:
+            pos_choice = int(input("Enter the number of the position to place your tile: "))
+            if pos_choice in position_map:
+                row, col = position_map[pos_choice]
+                ## adds the tile to the base station 
+                baseStation[row][col] = selected_tile
+                print(f"Tile placed at ({row}, {col}).")
+                self.printStation()
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
 
     def removeFromStation(self):
         pass
 
     def listOfSections(self):
-        pass
+        """This function will create a list of all the tiles that the spaces station has to use."""
+        for row in baseStation:
+            for type in row:
+                self.tile_in_station[type] += 1
+        print(self.tile_in_station)
+
+            

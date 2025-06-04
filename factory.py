@@ -103,3 +103,5 @@ class Factory:
         # Implement the logic for using Factory 6 here
         # For example, refining resources, updating inventory, etc.
         pass
+
+    

@@ -11,13 +11,13 @@ class player:
         if amount > 0:
             self.money += amount 
         else:
-            print("you must add a posative integer")
+            print("you must add a positive integer")
 
     def spend_money(self, amount: int):
         if amount > self.money:
             print("you do not have enough money")
         elif amount <= 0:
-            print("number must be posative")
+            print("number must be positive")
         else:
             self.money -= amount
 

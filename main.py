@@ -35,7 +35,7 @@ def player_inventory():
 def extract_resources():
     """This function will allow the player to pick a planet that they have a mine on and 
     gather the resorces that they have mined well they have been away from the planet."""
-    print("Extracting resources... (feature coming soon)")
+    print("Extracting resources... (feature coming soon)") # Add drill mining here
 
 
 def establish_mining_operation():

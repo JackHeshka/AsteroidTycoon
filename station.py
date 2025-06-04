@@ -1,4 +1,5 @@
 import player as Pl
+import factory as F
 ## This program would not work without the typing modual
 from typing import Dict, Any
 from typing import List, Optional
@@ -8,7 +9,7 @@ from typing import List, Optional
 and can be used ot build the space station."""
 tile_types: Dict[int, Dict[str, Any]] = {
     0: {
-        "art": [
+        "art": [ 
             "**********",
             "**********",
             "**********",
@@ -104,14 +105,31 @@ tile_types: Dict[int, Dict[str, Any]] = {
         ],
         "name": "Factory 4",
         "description": "Manufacturing facility Four.",
-        "Cost": 1100
+        "Cost": 200
+    },
+    9: {
+        "art": [
+            "+--------+",
+            "|Factory |",
+            "|  5     |",
+            "+--------+"
+        ],
+        "name": "Factory 5",
+        "description": "Manufacturing facility Five.",
+        "Cost": 400
+    },
+    10: {
+        "art": [
+            "+--------+",
+            "|Factory |",
+            "|  6     |",
+            "+--------+"
+        ],
+        "name": "Factory 6",
+        "description": "Manufacturing facility Six.",
+        "Cost": 800
     }
 }
-
-
-class factory:
-    def __init__(self):
-        pass
 
 
 
@@ -126,7 +144,9 @@ class spaceStation:
                                 5: 0,
                                 6: 0,
                                 7: 0,
-                                8: 0}
+                                8: 0,
+                                9: 0,
+                                10: 0}
         
         self.unused_tiles = {0: 0,
                              1: 0,
@@ -136,7 +156,9 @@ class spaceStation:
                              5: 0,
                              6: 0,
                              7: 0,
-                             8: 0}
+                             8: 0,
+                             9: 0,
+                             10: 0}
         
         """ This is the base station layout if the player has played before
         has a profile to load into the game it will be overwritten."""
@@ -330,20 +352,9 @@ class spaceStation:
             print("Invalid input. Please enter a number.")
 
 
-    def redueStation(self):
-        pass
-
-
-    def removeFromStation(self):
-        pass
-
-
     def listOfStationTiles(self):
         """This function will create a list of all the tiles that the spaces station has to use."""
         for row in self.base_station:
             for type in row:
                 self.tile_in_station[type] += 1
-  
-
-    def addToStation(self, space_player:Pl.player):
-        pass
+                F.Factory.factory_types[tile_types[type]["name"]]["numbers"] += 1

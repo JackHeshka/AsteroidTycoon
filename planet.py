@@ -86,7 +86,9 @@ class planet:
 
     def addDrill(self, x, y):
         if self.drills[f'{x},{y}'] == None:
-            self.drills[f'{x},{y}'] = d.drill(self.planetMap[x][y], lowTier, midTier, highTier)
+            self.drills[f'{x},{y}'] = d.drill(self.planetMap[x][y],
+                                               self.lowTier, self.midTier,
+                                                 self.highTier)
         else:
             print("There is already a drill there!")
 

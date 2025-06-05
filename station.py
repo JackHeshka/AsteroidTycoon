@@ -1,12 +1,10 @@
 import player as Pl
 import factory as F
-## This program would not work without the typing modual
+# This program would not work without the typing modual
 from typing import Dict, Any
 from typing import List, Optional
 
-
-""" This is the types of tiles that you can place
-and can be used ot build the space station."""
+# these are the tile types that the player can buy and add to their space station
 tile_types: Dict[int, Dict[str, Any]] = {
     0: {
         "art": [ 
@@ -16,7 +14,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "**********"
         ],
         "name": "space",
-        "description": "Impassable wall section.",
         "Cost": 0
     },
     1: {
@@ -27,7 +24,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Hallway",
-        "description": "A simple corridor.",
         "Cost": 10
     },
     2: {
@@ -38,7 +34,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Lab",
-        "description": "Science laboratory.",
         "Cost": 30
     },
     3: {
@@ -49,7 +44,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Dock",
-        "description": "Spaceship docking bay.",
         "Cost": 20
     },
     4: {
@@ -60,7 +54,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Sleeping Quarters",
-        "description": "Crew sleeping area.",
         "Cost": 40
     },
     5: {
@@ -71,7 +64,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 1",
-        "description": "Manufacturing facility One.",
         "Cost": 60
     },
     6: {
@@ -82,7 +74,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 2",
-        "description": "Manufacturing facility Two.",
         "Cost": 60
     },
     7: {
@@ -93,7 +84,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 3",
-        "description": "Manufacturing facility Three.",
         "Cost": 60
     },
     8: {
@@ -104,7 +94,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 4",
-        "description": "Manufacturing facility Four.",
         "Cost": 200
     },
     9: {
@@ -115,7 +104,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 5",
-        "description": "Manufacturing facility Five.",
         "Cost": 400
     },
     10: {
@@ -126,7 +114,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 6",
-        "description": "Manufacturing facility Six.",
         "Cost": 800
     }
 }
@@ -179,13 +166,11 @@ class spaceStation:
         self.listOfStationTiles()  # Update the tile counts
         return station_map
     
-
     def saveStation(self, filename: str):
         """This function saves the space station map to a file."""
         with open(filename, 'w') as file:
             for row in self.base_station:
                 file.write(' '.join(str(x) for x in row) + '\n')
-
 
     def printStation(self):
         """This function prints the current layout of the space station."""
@@ -199,7 +184,6 @@ class spaceStation:
             for line in lines:
                 print(line)
         print("\n")
-
 
     def buyTile(self, space_player: Pl.player):
         """This function allows the player to add a tile to their space station, by chosing from a list of available tiles."""
@@ -219,14 +203,14 @@ class spaceStation:
                 print(f"Error: {e}. Please try again.")
                 print("=================================================================================")
         selected_tile = choice - 1
-        ## check if the player has enough money to buy the tile
+        # check if the player has enough money to buy the tile
         if selected_tile in tile_types and space_player.money >= tile_types[selected_tile]["Cost"]:
-            ## removes the cost of the tile from the player's money
+            # removes the cost of the tile from the player's money
             space_player.spend_money(tile_types[selected_tile]["Cost"])
             print(f"You have bought a {tile_types[selected_tile]['name']}.")
             print(f"Your new balance is {space_player.money} credits.")
             print("=================================================================================")
-            ## update the tile count of unused tilesin the station
+            # update the tile count of unused tilesin the station
             self.unused_tiles[selected_tile] += 1
             while True:
                 try:
@@ -247,7 +231,6 @@ class spaceStation:
                     return
         else:
             print("Invalid choice or insufficient funds.")
-
 
     def addTile(self):
         """this funcion will allow the player to add a tile to their existing space station. it does this
@@ -302,7 +285,6 @@ class spaceStation:
                     print(f"Error: {e}. Please try again.")
             break  # Exit the loop
             
-
     def add(self, tile_to_add: int):
         """This function will add a tile to the space station by allowing the player to select a position."""
         numbered_map: List[List[Optional[int]]] = []    ## This will hold the numbered map of the base station
@@ -350,7 +332,6 @@ class spaceStation:
                 self.printStation()
         except ValueError:
             print("Invalid input. Please enter a number.")
-
 
     def listOfStationTiles(self):
         """This function will create a list of all the tiles that the spaces station has to use."""

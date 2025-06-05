@@ -1,6 +1,6 @@
 import math as math
 import player as Pl
-import tradeHub as tHub
+##import tradeHub as tHub
 import factory as Fc
 import station as St
 ## This program would not work without the typing modual
@@ -12,8 +12,7 @@ def explore_galaxy():
 
 def use_factory():
     """This function will allow the player to use a factory to refine resources."""
-    new_factory.use_factory()  # Call the method to use the factory
-    print("=================================================================================")
+    new_factory.use_factory(space_player)  # Call the method to use the factory
  
 def explore_space_station():
     """This function will allow the player to explore the space station."""
@@ -53,7 +52,7 @@ def expand_space_station():
     """This function will allow the player to expand their space station and build factories."""
     new_station.printStation()  # Print the station layout
     print("=================================================================================")
-    new_station.buyTile(space_player)  # Allow player to expand the station
+    new_station.buyTile()  # Allow player to expand the station
 
 
 def exit_game():
@@ -141,4 +140,4 @@ print("=========================================================================
 print("Here is the main menu where you can explore the galaxy,")
 print("trade resources, and manage your space station.")
 print("For the best experience, please expand you termanal window.")
-main_menu()  # Start the main menu loop
+main_menu()  # Start the main menu loop  

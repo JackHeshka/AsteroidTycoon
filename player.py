@@ -1,16 +1,14 @@
-from typing import List
-
 class player:
     def __init__(self, name: str, starting_money: int):
         self.name: str = name
         self.money: int = int(starting_money)
-        self.raw_inventory: dict[str, int] = {"Iron": 0,
+        self.raw_inventory: dict[str, int] = {"Iron": 2,
                                               "Coal": 0,
-                                              "Copper": 0,
+                                              "Copper": 3,
                                               "Gold": 0,
                                               "Aluminum": 0,
                                               "Plutonium": 0,
-                                              "Zinc": 0,
+                                              "Zinc": 5,
                                               "Diamond": 0,
                                               "Lead": 0,
                                               "Lithium": 0}
@@ -36,6 +34,19 @@ class player:
                                                    "Diamond": 0,
                                                    "Lead": 0,
                                                    "Lithium": 0}
+        
+        self.factory_info: dict[str, int] = {"Factory 1": {"num":1,
+                                                            "description": "Basic refinerys that double your input"},
+                                                "Factory 2": {"num":0,
+                                                            "description": "Advanced refinerys that triple your input"},
+                                                "Factory 3": {"num":0,
+                                                            "description": "High-tech refinerys that quadruple your input"},   
+                                                "Factory 4": {"num":0,
+                                                            "description": "Super refinerys that quintuple your input"},
+                                                "Factory 5": {"num":0,
+                                                            "description": "Mega refinerys that sextuple your input"},
+                                                "Factory 6": {"num":0,
+                                                            "description": "Ultra refinerys that septuple your input"}}
 
         self.health: int = 100
 
@@ -54,4 +65,4 @@ class player:
             self.money -= amount
 
     def money_left(self):
-        return self.money
+        return self.money  

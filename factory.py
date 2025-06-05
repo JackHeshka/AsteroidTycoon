@@ -1,107 +1,115 @@
-import station as St
+import player as Pl
 
 class Factory:
     """Here is where refinement of resources will take place."""
     
     def __init__(self):
-        self.factory_types = {
-                "Factory 1": {"function": self.factory_1,
-                              "numbers": 2,
-                              "description": "A place to refine resources into more valuable products.",
-                              "required_resources": {"metal_one": None},
-                              "change": 5,
-                              "output_resources": {"refined_metal": None}},
-                "Factory 2": {"function": self.factory_2,
-                              "numbers": 0,
-                              "description": "Advanced refinery for rare metals.",
-                              "required_resources": {"metal_one": None},
-                              "change": 5,
-                              "output_resources": {"refined_metal": None}},
-                "Factory 3": {"function": self.factory_3,
-                              "numbers": 0,
-                              "description": "High-tech factory for processing complex materials.",
-                              "required_resources": {"metal_one": None},
-                              "change": 5,
-                              "output_resources": {"refined_metal": None}},
-                "Factory 4": {"function": self.factory_4,
-                                "numbers": 4,
-                                "description": "Specialized factory for energy resources.",
-                                "required_resources": {"metal_one": None},
-                                "change": 5,
-                                "output_resources": {"refined_metal": None}},
-                "Factory 5": {"function": self.factory_5,
-                              "numbers": 0,
-                              "description": "Multi-purpose factory for various materials.",
-                              "required_resources": {"metal_one": None},
-                              "change": 5,
-                              "output_resources": {"refined_metal": None}},
-                "Factory 6": {"function": self.factory_6,
-                              "numbers": 5,
-                              "description": "Experimental factory for cutting-edge materials.",
-                              "required_resources": {"metal_one": None},
-                              "change": 5,
-                              "output_resources": {"refined_metal": None}}
-        }
+        pass
 
-    def use_factory(self):
-        available = [name for name, f in self.factory_types.items() if f['numbers'] > 0]
-        if not available:
-            print("No factories available to use.")
+    def use_factory(self, space_player: Pl.player):
+        """This function will allow the player to pick which factory to refine resources in."""
+        print("Here are the factories you can use:\n")
+        inx = 1 # number to display for user input
+        for factory_name, factory_data in space_player.factory_info.items():
+            if factory_data["num"] > 0:
+                print(f"{inx}. You have {factory_data['num']}: {factory_data['description']}")
+                inx += 1
+        print("\n================================================================================")
+        available_factories = [] # this list will hold the names of the factories that the player has available to use
+        for factory_name, factory_data in space_player.factory_info.items():
+            if factory_data["num"] > 0:
+                available_factories.append(factory_name)
+        if not available_factories: # if the player has no factories available
+            print("You do not own any factories to use.")
             return
-        print("Available Factories:")
-        for i, name in enumerate(available, 1):
-            factory = self.factory_types[name]
-            print(f"{i}. You have {factory['numbers']} ({name})")
         while True:
             try:
                 choice = int(input("Enter the number of the factory you want to use: "))
-                if 1 <= choice <= len(available):
-                    selected_name = available[choice - 1]
-                    print(f"You selected {selected_name}.")
-                    self.factory_types[selected_name]['function']()  # Call the factory function
-                    break
+                if 1 <= choice <= len(available_factories):
+                    selected_factory = available_factories[choice - 1]
+                    if selected_factory == "Factory 1":
+                        self.factory_1(space_player)
+                        break
+                    elif selected_factory == "Factory 2":
+                        self.factory_2(space_player)
+                        break
+                    elif selected_factory == "Factory 3":
+                        self.factory_3(space_player)
+                        break
+                    elif selected_factory == "Factory 4":
+                        self.factory_4(space_player)
+                        break
+                    elif selected_factory == "Factory 5":
+                        self.factory_5(space_player)
+                        break
+                    elif selected_factory == "Factory 6":
+                        self.factory_6(space_player)
+                        break
                 else:
-                    print("Invalid selection. Please choose a valid factory number.")
+                    raise ValueError("Invalid number.")
             except ValueError as e:
                 print(f"Error: {e}. Please try again.")
-        print("You can use these factories to refine resources into more valuable products.")
+                print("================================================================================")
 
-
-    def factory_1(self):
-        """This function will allow the player to use Factory 1."""
-        print("Using Factory 1...")
-        # Implement the logic for using Factory 1 here
-        # For example, refining resources, updating inventory, etc.
-        pass
+    def factory_1(self, space_player: Pl.player):
+        """This function will allow the player to use Factory 1, to double their input."""
+        ("================================================================================")
+        print(space_player.factory_info["Factory 1"]["description"]+"\n")
+        available_resources = []
+        inx = 1
+        for r in space_player.raw_inventory:
+            if space_player.raw_inventory[r] > 0: # Check if the player has any of this resource
+                available_resources.append(r)
+                print(f"{inx}. {r} - {space_player.raw_inventory[r]} units")
+                inx += 1
+        print("\n================================================================================")
+        if available_resources == []:
+            print("You do not have any resources to refine.")
+            return
+        else:
+            while True:
+                try:
+                    choice = int(input("Enter the number of the resource you want to refine: "))
+                    if 1 <= choice <= len(available_resources):
+                        selected_resource = available_resources[choice - 1]
+                        amount = int(input(f"How many units of {selected_resource} do you want to refine? "))
+                        if amount <= 0:
+                            raise ValueError("Amount must be positive.")
+                        if amount > space_player.raw_inventory[selected_resource]:
+                            raise ValueError("You do not have enough of that resource.")
+                        # Perform refinement
+                        refined_amount = amount * 2  # Factory 1 doubles the input
+                        space_player.raw_inventory[selected_resource] -= amount # Reduce raw inventory
+                        space_player.refined_inventory[selected_resource] += refined_amount # Add to refined inventory
+                        print(f"Refined {amount} units of {selected_resource} into {refined_amount} units of refined {selected_resource}.")
+                        break
+                    else:
+                        raise ValueError("Invalid number")
+                except ValueError as e:
+                    print(f"Error: {e}. Please try again.")
+                    print("================================================================================")
+    
     def factory_2(self):
         """This function will allow the player to use Factory 2."""
         print("Using Factory 2...")
-        # Implement the logic for using Factory 2 here
-        # For example, refining resources, updating inventory, etc.
         pass
+
     def factory_3(self):
         """This function will allow the player to use Factory 3."""
         print("Using Factory 3...")
-        # Implement the logic for using Factory 3 here
-        # For example, refining resources, updating inventory, etc.
         pass
+
     def factory_4(self):
         """This function will allow the player to use Factory 4."""
         print("Using Factory 4...")
-        # Implement the logic for using Factory 4 here
-        # For example, refining resources, updating inventory, etc.
         pass
+
     def factory_5(self):
         """This function will allow the player to use Factory 5."""
         print("Using Factory 5...")
-        # Implement the logic for using Factory 5 here
-        # For example, refining resources, updating inventory, etc.
         pass
+
     def factory_6(self):
         """This function will allow the player to use Factory 6."""
         print("Using Factory 6...")
-        # Implement the logic for using Factory 6 here
-        # For example, refining resources, updating inventory, etc.
         pass
-
-    

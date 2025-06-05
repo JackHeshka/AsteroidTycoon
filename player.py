@@ -2,6 +2,9 @@ class player:
     def __init__(self, name: str, starting_money: int):
         self.name: str = name
         self.money: int = int(starting_money)
+
+        self.planets = {}
+
         self.raw_inventory: dict[str, int] = {"Iron": 2,
                                               "Coal": 0,
                                               "Copper": 3,

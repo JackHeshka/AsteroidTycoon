@@ -27,13 +27,13 @@ def player_inventory():
 def visit_planet():
     """This function will allow the player to pick a planet that they have a mine on and 
     gather the resorces that they have mined while they have been away from the planet."""
-    print("Extracting resources... (feature coming soon)")
+    # Access a planet in the planet dictionary
 
 
 def establish_mining_operation():
-    """This function will allow the player to pick a planet and extract resources from in,
+    """This function will allow the player to pick a planet and extract resources from it,
     using a mining function."""
-    print("Establishing mining operation... (feature coming soon)")
+    # Add a planet to a dictionary in the player class
 
 
 def trade_resources():

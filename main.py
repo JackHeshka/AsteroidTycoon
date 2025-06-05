@@ -21,7 +21,7 @@ def explore_space_station():
 
 def player_inventory():
     """This function will print the player's inventory of resources and credits."""
-    print("Viewing player inventory... (feature coming soon)")
+    Pl.player.print_inventory(space_player)  # Print the player's inventory
 
 
 def extract_resources():
@@ -52,7 +52,7 @@ def expand_space_station():
     """This function will allow the player to expand their space station and build factories."""
     new_station.printStation()  # Print the station layout
     print("=================================================================================")
-    new_station.buyTile()  # Allow player to expand the station
+    new_station.buyTile(space_player)  # Allow player to expand the station
 
 
 def exit_game():
@@ -140,4 +140,4 @@ print("=========================================================================
 print("Here is the main menu where you can explore the galaxy,")
 print("trade resources, and manage your space station.")
 print("For the best experience, please expand you termanal window.")
-main_menu()  # Start the main menu loop  
+main_menu()  # Start the main menu loop  SS

@@ -35,7 +35,7 @@ class player:
                                                    "Lead": 0,
                                                    "Lithium": 0}
         
-        self.factory_info: dict[str, int] = {"Factory 1": {"num":1,
+        self.factory_info: dict[str, int] = {"Factory 1": {"num":0,
                                                             "description": "Basic refinerys that double your input"},
                                                 "Factory 2": {"num":0,
                                                             "description": "Advanced refinerys that triple your input"},
@@ -47,14 +47,15 @@ class player:
                                                             "description": "Mega refinerys that sextuple your input"},
                                                 "Factory 6": {"num":0,
                                                             "description": "Ultra refinerys that septuple your input"}}
-
         self.health: int = 100
+
 
     def get_money(self, amount: int):
         if amount > 0:
             self.money += amount 
         else:
             print("you must add a positive integer")
+
 
     def spend_money(self, amount: int):
         if amount > self.money:
@@ -64,5 +65,21 @@ class player:
         else:
             self.money -= amount
 
+
     def money_left(self):
         return self.money  
+    
+
+    def print_inventory(self):
+        print("Raw Inventory:")
+        for item, amount in self.raw_inventory.items():
+            print(f"{item}: {amount}")
+        print("\nRefined Inventory:")
+        for item, amount in self.refined_inventory.items():
+            print(f"{item}: {amount}")
+        print("\nCompound Inventory:")
+        for item, amount in self.compound_inventory.items():
+            print(f"{item}: {amount}")
+        print("\nFactory Information:")
+        for factory, info in self.factory_info.items():
+            print(f"{factory} - {info['num']} units: {info['description']}")

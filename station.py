@@ -212,6 +212,8 @@ class spaceStation:
             print("=================================================================================")
             # update the tile count of unused tilesin the station
             self.unused_tiles[selected_tile] += 1
+            if tile_types[selected_tile]["name"] in space_player.factory_info:
+                space_player.factory_info[tile_types[selected_tile]["name"]]["num"] += 1
             while True:
                 try:
                     print("would you like to add this tile to your space station?")
@@ -270,9 +272,14 @@ class spaceStation:
                     return
                 for idx, tile_id in enumerate(available_tiles, start=1):
                     print(f"{idx}: {tile_types[tile_id]['name']} - {self.unused_tiles[tile_id]} available")
+                print("e. Exit adding tiles")
                 print("\n=================================================================================")
                 try:
-                    tile_choice_input = int(input("Enter Number: "))
+                    tile_choice_input = input("Enter Number: ")
+                    if tile_choice_input.lower() == 'e':
+                        print("Exiting tile addition.")
+                        return
+                    tile_choice_input = int(tile_choice_input)
                     if tile_choice_input <= len(available_tiles):
                         tile_id = available_tiles[tile_choice_input - 1]
                         self.unused_tiles[tile_id] -= 1
@@ -287,21 +294,21 @@ class spaceStation:
             
     def add(self, tile_to_add: int):
         """This function will add a tile to the space station by allowing the player to select a position."""
-        numbered_map: List[List[Optional[int]]] = []    ## This will hold the numbered map of the base station
-        position_map: dict[int, tuple[int, int]] = {}    ## Maps number to (row, col)
-        counter = 1  ## Start numbering from 1 listing the positions
+        numbered_map: List[List[Optional[int]]] = []    # This will hold the numbered map of the base station
+        position_map: dict[int, tuple[int, int]] = {}    # Maps number to (row, col)
+        counter = 1  # Start numbering from 1 listing the positions
         for r, row_vals in enumerate(self.base_station):
             numbered_row = []
             for c, val in enumerate(row_vals):
                 if val == 0:
-                    """ If the space is empty, we will add a number to it's position in the map."""
+                    # if the space is empty, we will add a number to it's position in the map.
                     numbered_row.append(counter)
                     position_map[counter] = (r, c)
                     counter += 1
                 else:
                     numbered_row.append(None)
             numbered_map.append(numbered_row)
-        """ Print the station with numbers centered in empty spaces like the other print tile"""
+        # Create the art for each row, centering numbers in empty spaces
         for row_idx, row in enumerate(self.base_station):
             lines = [""] * 4
             for col_idx, col in enumerate(row):
@@ -338,4 +345,3 @@ class spaceStation:
         for row in self.base_station:
             for type in row:
                 self.tile_in_station[type] += 1
-                F.Factory.factory_types[tile_types[type]["name"]]["numbers"] += 1

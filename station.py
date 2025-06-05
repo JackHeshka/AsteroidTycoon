@@ -5,120 +5,6 @@ from typing import Dict, Any
 from typing import List, Optional
 
 # these are the tile types that the player can buy and add to their space station
-tile_types: Dict[int, Dict[str, Any]] = {
-    0: {
-        "art": [ 
-            "**********",
-            "**********",
-            "**********",
-            "**********"
-        ],
-        "name": "space",
-        "Cost": 0
-    },
-    1: {
-        "art": [
-            "+--------+",
-            "|        |",
-            "|        |",
-            "+--------+"
-        ],
-        "name": "Hallway",
-        "Cost": 10
-    },
-    2: {
-        "art": [
-            "+--------+",
-            "|  LAB   |",
-            "|        |",
-            "+--------+"
-        ],
-        "name": "Lab",
-        "Cost": 30
-    },
-    3: {
-        "art": [
-            "+--------+",
-            "|  DOCK  |",
-            "|        |",
-            "+--------+"
-        ],
-        "name": "Dock",
-        "Cost": 20
-    },
-    4: {
-        "art": [
-            "+--------+",
-            "| Sleep  |",
-            "|        |",
-            "+--------+"
-        ],
-        "name": "Sleeping Quarters",
-        "Cost": 40
-    },
-    5: {
-        "art": [
-            "+--------+",
-            "|Factory |",
-            "|  1     |",
-            "+--------+"
-        ],
-        "name": "Factory 1",
-        "Cost": 60
-    },
-    6: {
-        "art": [
-            "+--------+",
-            "|Factory |",
-            "|  2     |",
-            "+--------+"
-        ],
-        "name": "Factory 2",
-        "Cost": 60
-    },
-    7: {
-        "art": [
-            "+--------+",
-            "|Factory |",
-            "|  3     |",
-            "+--------+"
-        ],
-        "name": "Factory 3",
-        "Cost": 60
-    },
-    8: {
-        "art": [
-            "+--------+",
-            "|Factory |",
-            "|  4     |",
-            "+--------+"
-        ],
-        "name": "Factory 4",
-        "Cost": 200
-    },
-    9: {
-        "art": [
-            "+--------+",
-            "|Factory |",
-            "|  5     |",
-            "+--------+"
-        ],
-        "name": "Factory 5",
-        "Cost": 400
-    },
-    10: {
-        "art": [
-            "+--------+",
-            "|Factory |",
-            "|  6     |",
-            "+--------+"
-        ],
-        "name": "Factory 6",
-        "Cost": 800
-    }
-}
-
-
 
 class spaceStation:
     def __init__(self, name: str):
@@ -345,3 +231,118 @@ class spaceStation:
         for row in self.base_station:
             for type in row:
                 self.tile_in_station[type] += 1
+
+tile_types: Dict[int, Dict[str, Any]] = {
+    0: {
+        "art": [ 
+            "**********",
+            "**********",
+            "**********",
+            "**********"
+        ],
+        "name": "space",
+        "Cost": 0
+    },
+    1: {
+        "art": [
+            "+--------+",
+            "|        |",
+            "|        |",
+            "+--------+"
+        ],
+        "name": "Hallway",
+        "Cost": 10
+    },
+    2: {
+        "art": [
+            "+--------+",
+            "|  LAB   |",
+            "|        |",
+            "+--------+"
+        ],
+        "name": "Lab",
+        "Cost": 30
+    },
+    3: {
+        "art": [
+            "+--------+",
+            "|  DOCK  |",
+            "|        |",
+            "+--------+"
+        ],
+        "name": "Dock",
+        "Cost": 20
+    },
+    4: {
+        "art": [
+            "+--------+",
+            "| Sleep  |",
+            "|        |",
+            "+--------+"
+        ],
+        "name": "Sleeping Quarters",
+        "Cost": 40
+    },
+    5: {
+        "art": [
+            "+--------+",
+            "|Factory |",
+            "|  1     |",
+            "+--------+"
+        ],
+        "name": "Factory 1",
+        "Cost": 60
+    },
+    6: {
+        "art": [
+            "+--------+",
+            "|Factory |",
+            "|  2     |",
+            "+--------+"
+        ],
+        "name": "Factory 2",
+        "Cost": 60
+    },
+    7: {
+        "art": [
+            "+--------+",
+            "|Factory |",
+            "|  3     |",
+            "+--------+"
+        ],
+        "name": "Factory 3",
+        "Cost": 60
+    },
+    8: {
+        "art": [
+            "+--------+",
+            "|Factory |",
+            "|  4     |",
+            "+--------+"
+        ],
+        "name": "Factory 4",
+        "Cost": 200
+    },
+    9: {
+        "art": [
+            "+--------+",
+            "|Factory |",
+            "|  5     |",
+            "+--------+"
+        ],
+        "name": "Factory 5",
+        "Cost": 400
+    },
+    10: {
+        "art": [
+            "+--------+",
+            "|Factory |",
+            "|  6     |",
+            "+--------+"
+        ],
+        "name": "Factory 6",
+        "Cost": 800
+    }
+}
+
+

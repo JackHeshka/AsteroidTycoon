@@ -24,9 +24,9 @@ def player_inventory():
     Pl.player.print_inventory(space_player)  # Print the player's inventory
 
 
-def extract_resources():
+def visit_planet():
     """This function will allow the player to pick a planet that they have a mine on and 
-    gather the resorces that they have mined well they have been away from the planet."""
+    gather the resorces that they have mined while they have been away from the planet."""
     print("Extracting resources... (feature coming soon)")
 
 
@@ -67,7 +67,7 @@ game_play_options: Dict[str, Callable[[], None]] = {
     "*Use Factory": use_factory,
     "*Explore Space Station": explore_space_station,
     "Player Inventory": player_inventory,
-    "Extract Resources": extract_resources,
+    "Visit Planet": visit_planet,
     "Establish Mining Operation": establish_mining_operation,
     "Trade Resources": trade_resources,
     "*Build Space Station": add_station,

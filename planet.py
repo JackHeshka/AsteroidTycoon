@@ -9,6 +9,9 @@ class planet:
     def __init__(self):
         self.planetMap = self.resourceScatter()
         self.drills = self.initializeDrillVacancy()
+        self.lowTier = r.choice(["Iron", "Coal", "Copper", "Aluminium"])
+        self.midTier = r.choice(["Gold", "Zinc", "Lithium"])
+        self.highTier = r.choice(["Diamond", "Lead", "Plutonium"])
 
     def resourceScatter(self):
         #Generate base plane
@@ -83,7 +86,7 @@ class planet:
 
     def addDrill(self, x, y):
         if self.drills[f'{x},{y}'] == None:
-            self.drills[f'{x},{y}'] = d.drill(self.planetMap[x][y])
+            self.drills[f'{x},{y}'] = d.drill(self.planetMap[x][y], lowTier, midTier, highTier)
         else:
             print("There is already a drill there!")
 

@@ -55,7 +55,7 @@ class player:
 
     def get_money(self, amount: int):
         if amount > 0:
-            self.money += amount 
+            self.money += amount
         else:
             print("you must add a positive integer")
 

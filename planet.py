@@ -21,22 +21,31 @@ class planet:
         self.lowTier = r.choice(["Iron", "Coal", "Copper", "Aluminum"])
         self.midTier = r.choice(["Gold", "Zinc", "Lithium"])
         self.highTier = r.choice(["Diamond", "Lead", "Plutonium"])
-        self.userMap = self.generateSurface(13, 13, '???')
+        self.userMap = self.initializeUserMap(14,14)
 
     def __str__(self):
         return self.name
     
-    def generateSurface(self, x, y, fill):
+    def generateGrid(self, x, y, fill):
         ret = []
         for i in range(0, y):
             ret.append([])
             for j in range(0, x):
                 ret[i].append(fill)
         return ret
+    
+    def initializeUserMap(self, x, y):
+        map = self.generateGrid(x, y, '???')
+        for i in range(x):
+            map[0][i] = i
+        for i in range(y):
+            map[i][0] = i
+        map[0][0] = ''
+        return map
 
     def resourceScatter(self):
         #Generate base plane
-        surface = self.generateSurface(13, 13, None)
+        surface = self.generateGrid(13, 13, None)
 
         #Random height sample points
         for i in range(int(len(surface)/3)+1):
@@ -92,7 +101,7 @@ class planet:
         return ret
 
     def addDrill(self):
-        self.userMap[self.y][self.x] += '\n(Drilling)'
+        self.userMap[self.y+1][self.x+1] += '\n(Drilling)'
         if self.drills[f'{self.x},{self.y}'] == None:
             self.drills[f'{self.x},{self.y}'] = d.drill(
                                                 self.planetMap[self.x][self.y],
@@ -106,7 +115,7 @@ class planet:
 
     def groundSurvey(self):
         tile = 100*self.planetMap[self.y][self.x]
-        self.userMap[self.y][self.x] = f'{round(tile, 1)}%'
+        self.userMap[self.y+1][self.x+1] = f'{round(tile, 1)}%'
         if tile != None:
             if tile > 75:
                 print(f'{round(tile, 1)}% Ore Concentration, very good!')

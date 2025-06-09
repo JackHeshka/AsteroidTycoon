@@ -52,7 +52,7 @@ def visit_planet():
             break
     while True:
         print("================================================================================\n")
-        options_list = list(Planet.planetOptions.keys())
+        options_list = list(current_planet.planetOptions.keys())
         for index, option in enumerate(options_list, start=1):
             print(f"{index}. {option}")
         print("\n================================================================================")
@@ -61,7 +61,7 @@ def visit_planet():
         try:
             if choice in map(str, range(1, len(options_list) + 1)):
                 selected_option = options_list[int(choice) - 1]
-                current_planet(Planet.planetOptions[selected_option])()
+                current_planet.planetOptions[selected_option](current_planet)
             elif not choice.isdigit():
                 raise ValueError("Enter a Number")
             elif int(choice) not in range(1, len(options_list) + 1):
@@ -79,7 +79,8 @@ def establish_mining_operation():
     planet_name = random.choice(list(open('planetNames.txt')))
     while planet_name in space_player.planets.keys():
         planet_name = random.choice(list(open('planetNames.txt')))
-    space_player.planets[planet_name] = Planet.planet()
+    space_player.planets[planet_name] = Planet.planet(planet_name)
+    print(f"\nPurchased mining rights to {space_player.planets[planet_name]}")
 
 
 def trade_resources():

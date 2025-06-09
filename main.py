@@ -1,4 +1,6 @@
 import math as math
+import random as random
+import planet as Planet
 import player as Pl
 ##import tradeHub as tHub
 import factory as Fc
@@ -27,13 +29,57 @@ def player_inventory():
 def visit_planet():
     """This function will allow the player to pick a planet that they have a mine on and 
     gather the resorces that they have mined while they have been away from the planet."""
-    # Access a planet in the planet dictionary
+    while True:
+        current_planet = None
+        print("================================================================================\n")
+        options_list = list(space_player.planets.keys())
+        for index, option in enumerate(options_list, start=1):
+            print(f"{index}. {option}")
+        print("\n================================================================================")
+        choice = input(f"Enter Number (1-{len(options_list)}): ")
+        print("================================================================================")
+        try:
+            if choice in map(str, range(1, len(options_list) + 1)):
+                selected_option = options_list[int(choice) - 1]
+                current_planet = space_player.planets[selected_option]
+            elif not choice.isdigit():
+                raise ValueError("Enter a Number")
+            elif int(choice) not in range(1, len(options_list) + 1):
+                raise ValueError("Choice a Number in range")
+        except ValueError as e:
+            print(f"Invalid choice. {e}. Error: Please try again.")
+        if current_planet != None:
+            break
+    while True:
+        print("================================================================================\n")
+        options_list = list(Planet.planetOptions.keys())
+        for index, option in enumerate(options_list, start=1):
+            print(f"{index}. {option}")
+        print("\n================================================================================")
+        choice = input(f"Enter Number (1-{len(options_list)}): ")
+        print("================================================================================")
+        try:
+            if choice in map(str, range(1, len(options_list) + 1)):
+                selected_option = options_list[int(choice) - 1]
+                current_planet(Planet.planetOptions[selected_option])()
+            elif not choice.isdigit():
+                raise ValueError("Enter a Number")
+            elif int(choice) not in range(1, len(options_list) + 1):
+                raise ValueError("Choice a Number in range")
+        except ValueError as e:
+            print(f"Invalid choice. {e}. Error: Please try again.")
+        except SystemError:
+            current_planet.harvest(space_player)
+            break
 
 
 def establish_mining_operation():
     """This function will allow the player to pick a planet and extract resources from it,
     using a mining function."""
-    # Add a planet to a dictionary in the player class
+    planet_name = random.choice(list(open('planetNames.txt')))
+    while planet_name in space_player.planets.keys():
+        planet_name = random.choice(list(open('planetNames.txt')))
+    space_player.planets[planet_name] = Planet.planet()
 
 
 def trade_resources():

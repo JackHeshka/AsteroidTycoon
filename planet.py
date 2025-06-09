@@ -5,6 +5,8 @@ import drill as d
 class planet:
     planetMap = []
     drills = {}
+    x = 0
+    y = 0
 
     def __init__(self):
         self.planetMap = self.resourceScatter()
@@ -84,16 +86,19 @@ class planet:
                 ret[f'{x},{y}'] = None
         return ret
 
-    def addDrill(self, x, y):
-        if self.drills[f'{x},{y}'] == None:
-            self.drills[f'{x},{y}'] = d.drill(self.planetMap[x][y],
-                                               self.lowTier, self.midTier,
-                                                 self.highTier)
+    def addDrill(self):
+        if self.drills[f'{self.x},{self.y}'] == None:
+            self.drills[f'{self.x},{self.y}'] = d.drill(
+                                                self.planetMap[self.x][self.y],
+                                                self.lowTier, 
+                                                self.midTier,
+                                                self.highTier
+                                                )
         else:
             print("There is already a drill there!")
 
-    def groundSurvey(self, x, y):
-        tile = self.planetMap[x][y]
+    def groundSurvey(self):
+        tile = self.planetMap[self.x][self.y]
         if tile > 75:
             print(f'{100*tile}% Ore Concentration, very good!')
         elif tile > 50:
@@ -105,3 +110,39 @@ class planet:
 
     def lerp(self, a, b, t):
         return (1-t)*a + t*b
+    
+    def movePos(self):
+        x_pos = y_pos = -1
+        while x_pos > 0 and x_pos < 14:
+            try:
+                x_pos = int(input("Please select an x position [1-13]: "))
+            except TypeError:
+                print("Please input an integer")
+            if x_pos <= 0 or x_pos >= 13:
+                print("Please select a number from 1-13 (inclusive)")
+        while y_pos > 0 and y_pos < 14:
+            try:
+                y_pos = int(input("Please select a y position [1-13]: "))
+            except TypeError:
+                print("Please input an integer")
+            if y_pos <= 0 or y_pos >= 13:
+                print("Please select a number from 1-13 (inclusive)")
+        self.x = x_pos - 1
+        self.y = y_pos - 1
+
+    def leavePlanet(self):
+        self.x = self.y = 0
+        print("Returning to station...")
+        raise SystemError
+    
+    def harvest(self, player):
+        for drill in self.drills.items():
+            drill.mine(player)
+    
+    
+planetOptions = {
+    "Place Drill": planet.addDrill,
+    "Survey Ground": planet.groundSurvey,
+    "Move": planet.movePos,
+    "Return to station and harves minerals": planet.leavePlanet
+}

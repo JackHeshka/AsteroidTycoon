@@ -3,6 +3,11 @@ import random as r
 import drill as d
 from tabulate import tabulate
 
+
+class ScopeBreak(Exception):
+    pass
+
+
 class planet:
     planetMap = []
     drills: dict[str, d.drill] = {}
@@ -142,7 +147,7 @@ class planet:
     def leavePlanet(self):
         self.x = self.y = 0
         print("Returning to station...")
-        raise SystemError
+        raise ScopeBreak
     
     def harvest(self, player):
         total = [0,0,0]

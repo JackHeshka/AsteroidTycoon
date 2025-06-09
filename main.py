@@ -8,7 +8,7 @@ import station as St
 ## This program would not work without the typing modual
 from typing import Callable, Dict
 
-def explore_galaxy():
+def explore_galaxy(): # I don't think we will need this, rather we can just add a filter to planets
     """This function will allow the player to explore the planets in the galaxy."""
     print("Exploring the galaxy... (feature coming soon)")
 
@@ -68,7 +68,7 @@ def visit_planet():
                 raise ValueError("Choice a Number in range")
         except ValueError as e:
             print(f"Invalid choice. {e}. Error: Please try again.")
-        except SystemError:
+        except Planet.ScopeBreak:
             current_planet.harvest(space_player)
             break
 

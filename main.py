@@ -6,7 +6,7 @@ import player as Pl
 import factory as Fc
 import station as St
 import tradeHub as tHub
-## This program would not work without the typing modual
+## This program would not work without the typing module
 from typing import Callable, Dict
 
 

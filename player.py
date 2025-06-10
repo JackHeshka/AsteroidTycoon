@@ -39,17 +39,17 @@ class player:
                                                    "Lithium": 0}
         
         self.factory_info: dict[str, int] = {"Factory 1": {"num":0,
-                                                            "description": "Basic refinerys that double your input"},
+                                                            "description": "Basic refinerys that doubles your input"},
                                                 "Factory 2": {"num":0,
-                                                            "description": "Advanced refinerys that triple your input"},
+                                                            "description": "Advanced refinerys that triples your input"},
                                                 "Factory 3": {"num":0,
-                                                            "description": "High-tech refinerys that quadruple your input"},   
+                                                            "description": "High-tech refinerys that quadruples your input"},   
                                                 "Factory 4": {"num":0,
-                                                            "description": "Super refinerys that quintuple your input"},
+                                                            "description": "Super refinerys that quintuples your input"},
                                                 "Factory 5": {"num":0,
-                                                            "description": "Mega refinerys that sextuple your input"},
+                                                            "description": "Mega refinerys that sextuples your input"},
                                                 "Factory 6": {"num":0,
-                                                            "description": "Ultra refinerys that septuple your input"}}
+                                                            "description": "Ultra refinerys that septuples your input"}}
         self.health: int = 100
 
 

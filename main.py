@@ -9,14 +9,12 @@ import tradeHub as tHub
 ## This program would not work without the typing modual
 from typing import Callable, Dict
 
-def explore_galaxy(): # I don't think we will need this, rather we can just add a filter to planets
-    """This function will allow the player to explore the planets in the galaxy."""
-    print("Exploring the galaxy... (feature coming soon)")
 
 def use_factory():
     """This function will allow the player to use a factory to refine resources."""
     new_factory.use_factory(space_player)  # Call the method to use the factory
  
+
 def explore_space_station():
     """This function will allow the player to explore the space station."""
     new_station.printStation()
@@ -93,6 +91,7 @@ def trade_resources():
     """This function will allow the player to trade resources they have mined for credits."""
     tHub.tradeHub.trade_resources(new_station, space_player)  # Call the trade resources method
 
+
 def add_station():
     """This function will allow the player to build a new space station."""
     new_station.printStation()  # Print the station layout
@@ -115,7 +114,6 @@ def exit_game():
 
 ## This dictionary holds the options for the game play menu.
 game_play_options: Dict[str, Callable[[], None]] = {
-    ##"Explore Galaxy": explore_galaxy,
     "Use Factory To Refine Resources": use_factory,
     "View Space Station": explore_space_station,
     "View Inventory": player_inventory,

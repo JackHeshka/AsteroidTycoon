@@ -24,7 +24,7 @@ class planet:
         self.userMap = self.initializeUserMap(14,14)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} ({self.lowTier}, {self.midTier}, {self.highTier})'
     
     def generateGrid(self, x, y, fill):
         '''

@@ -1,4 +1,4 @@
-import player as Pl
+import player as Pl 
 
 class Factory:
     """Here is where refinement of resources will take place."""
@@ -8,13 +8,12 @@ class Factory:
 
     def use_factory(self, space_player: Pl.player):
         """This function will allow the player to pick which factory to refine resources in."""
-        print("Here are the factories you can use:\n")
+        
         inx = 1 # number to display for user input
         for factory_name, factory_data in space_player.factory_info.items():
             if factory_data["num"] > 0:
                 print(f"{inx}. You have {factory_data['num']}: {factory_data['description']}")
                 inx += 1
-        print("\n================================================================================")
         available_factories = [] # this list will hold the names of the factories that the player has available to use
         for factory_name, factory_data in space_player.factory_info.items():
             if factory_data["num"] > 0:
@@ -22,6 +21,9 @@ class Factory:
         if not available_factories: # if the player has no factories available
             print("You do not own any factories to use.")
             return
+        else:
+            print("These are your factorys commander.")
+        print("\n================================================================================")
         while True:
             try:
                 choice = input("Enter the number of the factory you want to use: ")

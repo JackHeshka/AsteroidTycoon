@@ -72,6 +72,17 @@ class player:
     def money_left(self):
         return self.money  
     
+    def remove_resource(self,class_type,ore,amount):
+        if class_type == "raw_inventory":
+            self.raw_inventory[ore] -= amount
+        elif class_type == "refined_inventory":
+            self.refined_inventory[ore] -= amount
+        elif class_type == "compound_inventory":
+            self.compound_inventory[ore] -= amount
+        else:
+            print("Invalid class_type. Must be 'raw', 'refined', or 'compound'.")
+            return  
+
 
     def print_inventory(self):
         print("Raw Inventory:")
@@ -86,3 +97,6 @@ class player:
         print("\nFactory Information:")
         for factory, info in self.factory_info.items():
             print(f"{factory} - {info['num']} units: {info['description']}")
+        print(f"\nCredits: {self.money}")
+        for planet_name, planet in self.planets.items():
+            print(f"Planet: {planet_name}, Resources: {planet.get_resources()}")

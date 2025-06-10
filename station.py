@@ -1,4 +1,4 @@
-import player as Pl
+import player as Pl  
 import factory as F
 # This program would not work without the typing modual
 from typing import Dict, Any
@@ -60,7 +60,7 @@ class spaceStation:
 
     def printStation(self):
         """This function prints the current layout of the space station."""
-        print("\n")
+        ##print("\n")
         for row in self.base_station:
             lines = [""] * 4
             for col in row:
@@ -69,7 +69,7 @@ class spaceStation:
                     lines[i] += cell["art"][i]
             for line in lines:
                 print(line)
-        print("\n")
+        ##print("\n")
 
     def buyTile(self, space_player: Pl.player):
         """This function allows the player to add a tile to their space station, by chosing from a list of available tiles."""
@@ -344,5 +344,3 @@ tile_types: Dict[int, Dict[str, Any]] = {
         "Cost": 800
     }
 }
-
-

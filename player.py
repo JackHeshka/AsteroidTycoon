@@ -39,17 +39,17 @@ class player:
                                                    "Lithium": 0}
         
         self.factory_info: dict[str, int] = {"Factory 1": {"num":0,
-                                                            "description": "Basic refinerys that doubles your input"},
+                                                            "description": "Basic refinerys that double your input"},
                                                 "Factory 2": {"num":0,
-                                                            "description": "Advanced refinerys that triples your input"},
+                                                            "description": "Advanced refinerys that triple your input"},
                                                 "Factory 3": {"num":0,
-                                                            "description": "High-tech refinerys that quadruples your input"},   
+                                                            "description": "High-tech refinerys that quadruple your input"},   
                                                 "Factory 4": {"num":0,
-                                                            "description": "Super refinerys that quintuples your input"},
+                                                            "description": "Super refinerys that quintuple your input"},
                                                 "Factory 5": {"num":0,
-                                                            "description": "Mega refinerys that sextuples your input"},
+                                                            "description": "Mega refinerys that sextuple your input"},
                                                 "Factory 6": {"num":0,
-                                                            "description": "Ultra refinerys that septuples your input"}}
+                                                            "description": "Ultra refinerys that septuple your input"}}
         self.health: int = 100
 
 
@@ -72,16 +72,20 @@ class player:
     def money_left(self):
         return self.money  
     
-    def remove_resource(self,class_type,ore,amount):
+    def remove_resource(self, class_type, ore, amount):
         if class_type == "raw_inventory":
-            self.raw_inventory[ore] -= amount
+            self.raw_inventory[ore] = 0
+            self.money += amount
         elif class_type == "refined_inventory":
-            self.refined_inventory[ore] -= amount
+            self.refined_inventory[ore] = 0
+            self.money += amount
         elif class_type == "compound_inventory":
-            self.compound_inventory[ore] -= amount
+            self.compound_inventory[ore] = 0
+            self.money += amount
+
         else:
             print("Invalid class_type. Must be 'raw', 'refined', or 'compound'.")
-            return  
+      
 
 
     def print_inventory(self):
@@ -98,5 +102,3 @@ class player:
         for factory, info in self.factory_info.items():
             print(f"{factory} - {info['num']} units: {info['description']}")
         print(f"\nCredits: {self.money}")
-        for planet_name, planet in self.planets.items():
-            print(f"Planet: {planet_name}, Resources: {planet.get_resources()}")

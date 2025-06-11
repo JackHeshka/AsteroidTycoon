@@ -83,7 +83,7 @@ def establish_mining_operation():
         planet_name = random.choice(list(open('planetNames.txt')))
     space_player.planets[planet_name] = Planet.planet(planet_name)
     print(f"\nPurchased mining rights to {space_player.planets[planet_name]}")
-    Pl.player.spend_money(space_player, 100)  # Deduct the cost of establishing a mining operation
+    Pl.player.spend_money(space_player, 500)  # Deduct the cost of establishing a mining operation
     print(f"Your current balance is {space_player.money} credits.")
 
 

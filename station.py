@@ -291,7 +291,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 1",
-        "Cost": 60
+        "Cost": 200
     },
     6: {
         "art": [
@@ -301,7 +301,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 2",
-        "Cost": 60
+        "Cost": 1000
     },
     7: {
         "art": [
@@ -311,7 +311,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 3",
-        "Cost": 60
+        "Cost": 10000
     },
     8: {
         "art": [
@@ -321,7 +321,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 4",
-        "Cost": 200
+        "Cost": 250000
     },
     9: {
         "art": [
@@ -331,7 +331,7 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 5",
-        "Cost": 400
+        "Cost": 500000
     },
     10: {
         "art": [
@@ -341,6 +341,6 @@ tile_types: Dict[int, Dict[str, Any]] = {
             "+--------+"
         ],
         "name": "Factory 6",
-        "Cost": 800
+        "Cost": 1000000
     }
 }

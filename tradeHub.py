@@ -85,18 +85,20 @@ class tradeHub:
         print("=" * 80)
  
         if sell_choice == '1':
-            try:
-                resource_num = int(input("Enter the number of the resource you want to sell: "))
-                resource_names = list(inventory)
-                if resource_num < 1 or resource_num > len(resource_names):
-                    raise IndexError("Invalid resource number.")
-                resource_name = resource_names[resource_num - 1]
-                if inventory[resource_name] == 0:
-                    raise IndexError("You have no units of this resource to sell.")
-            except IndexError as e:
-                print(f"Error: {e}. Please try again.")
-            except:
-                print("Something went wrong, please try again")
+            while True:
+                try:
+                    resource_num = int(input("Enter the number of the resource you want to sell: "))
+                    resource_names = list(inventory)
+                    if resource_num < 1 or resource_num > len(resource_names):
+                        raise IndexError("Invalid resource number.")
+                    resource_name = resource_names[resource_num - 1]
+                    if inventory[resource_name] == 0:
+                        raise IndexError("You have no units of this resource to sell.")
+                    break
+                except IndexError as e:
+                    print(f"Error: {e}. Please try again.")
+                except:
+                    print("Something went wrong, please try again")
 
             price = price_dict.get(resource_name, 0)
             total_credits = price * inventory[resource_name]

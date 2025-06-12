@@ -91,8 +91,13 @@ def establish_mining_operation():
             Pl.player.spend_money(space_player, planet_cost)  # Deduct the cost of establishing a mining operation
             print(f"Your current balance is {space_player.money} credits.")
             break
+        elif choice == 'n':
+            break
+        elif space_player.money < planet_cost:
+            print('Insufficient funds')
+            break
         else:
-            print('Invalid response, please try again')
+            print("Something went wrong, please try again")
 
 
 def trade_resources():

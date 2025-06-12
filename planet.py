@@ -130,7 +130,7 @@ class planet:
         '''
         This function adds a drill to the current tile if vacant
         '''
-        if self.drills[f'{self.x},{self.y}'] == None:
+        if self.drills[f'{self.x},{self.y}'] != None:
             while True:
                 choice = input(f'This purchase will cost 150 credits,\
                                 do you wish to proceed? [Y/N]: ').strip().lower()
@@ -160,32 +160,29 @@ class planet:
         the user map, and inform the player if it is a good
         spot to mine or not
         '''
-        if tile != None:
-            while True:
-                choice = input(f'This purchase will cost 50 credits,\
-                                do you wish to proceed? [Y/N]: ').strip().lower()
-                if self.user.money >= 50 and choice == 'y':
-                    # Convert ore concentration to a percentage
-                    tile = 100*self.planetMap[self.y][self.x]
-                    # Update user map
-                    self.userMap[self.y+1][self.x+1] = f'{round(tile, 1)}%'
-                    # Give user feedback
-                    if tile > 75:
-                        print(f'{round(tile, 1)}% Ore Concentration, very good!')
-                    elif tile > 50:
-                        print(f'{round(tile, 1)}% Ore Concentration, decent patch.')
-                    elif tile > 25:
-                        print(f'{round(tile, 1)}% Ore Concentration, less than ideal.')
-                    else:
-                        print(f'{round(tile, 1)}% Ore Concentration, rather awful.')
-                    break
-                elif choice == 'n':
-                    break
+        while True:
+            choice = input(f'This purchase will cost 50 credits,\
+                            do you wish to proceed? [Y/N]: ').strip().lower()
+            if self.user.money >= 50 and choice == 'y':
+                # Convert ore concentration to a percentage
+                tile = 100*self.planetMap[self.y][self.x]
+                # Update user map
+                self.userMap[self.y+1][self.x+1] = f'{round(tile, 1)}%'
+                # Give user feedback
+                if tile > 75:
+                    print(f'{round(tile, 1)}% Ore Concentration, very good!')
+                elif tile > 50:
+                    print(f'{round(tile, 1)}% Ore Concentration, decent patch.')
+                elif tile > 25:
+                    print(f'{round(tile, 1)}% Ore Concentration, less than ideal.')
                 else:
-                    print('Insufficient funds')
-                    break
-        else:
-            print('You have already surveyed this spot')
+                    print(f'{round(tile, 1)}% Ore Concentration, rather awful.')
+                break
+            elif choice == 'n':
+                break
+            else:
+                print('Insufficient funds')
+                break
                     
 
     def lerp(self, a, b, t):

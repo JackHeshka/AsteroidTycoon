@@ -95,6 +95,8 @@ class tradeHub:
                     raise IndexError("You have no units of this resource to sell.")
             except IndexError as e:
                 print(f"Error: {e}. Please try again.")
+            except:
+                print("Something went wrong, please try again")
 
             price = price_dict.get(resource_name, 0)
             total_credits = price * inventory[resource_name]

@@ -78,13 +78,17 @@ def visit_planet():
 def establish_mining_operation():
     """This function will allow the player to pick a planet and extract resources from it,
     using a mining function."""
-    planet_name = random.choice(list(open('planetNames.txt')))
-    while planet_name in space_player.planets.keys():
+    planet_cost = 500*len(space_player.planets)^2
+    choice = input(f'This purchase will cost {planet_cost} creadits,\
+                    do you wish to proceed? [Y/N]: ').strip().lower()
+    if space_player.money >= planet_cost and choice == 'y':
         planet_name = random.choice(list(open('planetNames.txt')))
-    space_player.planets[planet_name] = Planet.planet(planet_name)
-    print(f"\nPurchased mining rights to {space_player.planets[planet_name]}")
-    Pl.player.spend_money(space_player, 500)  # Deduct the cost of establishing a mining operation
-    print(f"Your current balance is {space_player.money} credits.")
+        while planet_name in space_player.planets.keys():
+            planet_name = random.choice(list(open('planetNames.txt')))
+        space_player.planets[planet_name] = Planet.planet(planet_name)
+        print(f"\nPurchased mining rights to {space_player.planets[planet_name]}")
+        Pl.player.spend_money(space_player, planet_cost)  # Deduct the cost of establishing a mining operation
+        print(f"Your current balance is {space_player.money} credits.")
 
 
 def trade_resources():

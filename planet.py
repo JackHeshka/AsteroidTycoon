@@ -14,7 +14,7 @@ class planet:
     x = 0
     y = 0
 
-    def __init__(self, name):
+    def __init__(self, name, user):
         self.name = name
         self.planetMap = self.resourceScatter()
         self.drills = self.initializeDrillVacancy(13, 13)
@@ -22,6 +22,8 @@ class planet:
         self.midTier = r.choice(["Gold", "Zinc", "Lithium"])
         self.highTier = r.choice(["Diamond", "Lead", "Plutonium"])
         self.userMap = self.initializeUserMap(14,14)
+        self.user = user
+
 
     def __str__(self):
         return f'{self.name} ({self.lowTier}, {self.midTier}, {self.highTier})'
@@ -128,17 +130,27 @@ class planet:
         '''
         This function adds a drill to the current tile if vacant
         '''
-        # Update user map
-        self.userMap[self.y+1][self.x+1] += '\n(Drilling)'
         if self.drills[f'{self.x},{self.y}'] == None:
-            # Add the drill
-            self.drills[f'{self.x},{self.y}'] = d.drill(
-                                                self.planetMap[self.x][self.y],
-                                                self.lowTier, 
-                                                self.midTier,
-                                                self.highTier
-                                                )
-            print("Drill placed!")
+            while True:
+                choice = input(f'This purchase will cost 150 credits,\
+                                do you wish to proceed? [Y/N]: ').strip().lower()
+                if self.user.money >= 150 and choice == 'y':
+                    # Update user map
+                    self.userMap[self.y+1][self.x+1] += '\n(Drilling)'
+                    # Add the drill
+                    self.drills[f'{self.x},{self.y}'] = d.drill(
+                                                        self.planetMap[self.x][self.y],
+                                                        self.lowTier, 
+                                                        self.midTier,
+                                                        self.highTier
+                                                        )
+                    print("Drill placed!")
+                    break
+                elif choice == 'n':
+                    break
+                else:
+                    print('Insufficient funds')
+                    break
         else:
             print("There is already a drill there!")
 
@@ -148,20 +160,33 @@ class planet:
         the user map, and inform the player if it is a good
         spot to mine or not
         '''
-        # Convert ore concentration to a percentage
-        tile = 100*self.planetMap[self.y][self.x]
-        # Update user map
-        self.userMap[self.y+1][self.x+1] = f'{round(tile, 1)}%'
-        # Give user feedback
         if tile != None:
-            if tile > 75:
-                print(f'{round(tile, 1)}% Ore Concentration, very good!')
-            elif tile > 50:
-                print(f'{round(tile, 1)}% Ore Concentration, decent patch.')
-            elif tile > 25:
-                print(f'{round(tile, 1)}% Ore Concentration, less than ideal.')
-            else:
-                print(f'{round(tile, 1)}% Ore Concentration, rather awful.')
+            while True:
+                choice = input(f'This purchase will cost 50 credits,\
+                                do you wish to proceed? [Y/N]: ').strip().lower()
+                if self.user.money >= 50 and choice == 'y':
+                    # Convert ore concentration to a percentage
+                    tile = 100*self.planetMap[self.y][self.x]
+                    # Update user map
+                    self.userMap[self.y+1][self.x+1] = f'{round(tile, 1)}%'
+                    # Give user feedback
+                    if tile > 75:
+                        print(f'{round(tile, 1)}% Ore Concentration, very good!')
+                    elif tile > 50:
+                        print(f'{round(tile, 1)}% Ore Concentration, decent patch.')
+                    elif tile > 25:
+                        print(f'{round(tile, 1)}% Ore Concentration, less than ideal.')
+                    else:
+                        print(f'{round(tile, 1)}% Ore Concentration, rather awful.')
+                    break
+                elif choice == 'n':
+                    break
+                else:
+                    print('Insufficient funds')
+                    break
+        else:
+            print('You have already surveyed this spot')
+                    
 
     def lerp(self, a, b, t):
         '''

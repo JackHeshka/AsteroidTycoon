@@ -228,18 +228,11 @@ while True:
             player_name = input("Please enter your username: ")
             ## Create the file name
             player_name_txt = "1" + player_name + ".txt"
-<<<<<<< HEAD
-            ## use the laoddata modual to get the info from the the txt file
-            player_data, station_data = LD.dataLoad(player_name_txt)
-            ## Create objects for player and spaceStation
-=======
             ##use the laoddata modual to get the info from the the txt file
             player_data, station_data, planet_data = LD.dataLoad(player_name_txt)
             ##Create objects for player and spaceStation
->>>>>>> fc4baca6ef953c732e70069ab7ed13adcd9253b7
             space_player = Pl.player(player_data["name"], player_data["money"])
             new_station = St.spaceStation(player_data["name"])
-<<<<<<< HEAD
             ## Change the base values for the player modual
             space_player.raw_inventory = \
                 player_data.get("raw_inventory") or {}
@@ -247,12 +240,6 @@ while True:
                 player_data.get("refined_inventory") or {}
             space_player.compound_inventory = \
                 player_data.get("compound_inventory") or {}
-=======
-            ## Change the base values for the player module
-            space_player.raw_inventory = player_data.get("raw_inventory") or {}
-            space_player.refined_inventory = player_data.get("refined_inventory") or {}
-            space_player.compound_inventory = player_data.get("compound_inventory") or {}
->>>>>>> fc4baca6ef953c732e70069ab7ed13adcd9253b7
             space_player.factory_info = player_data.get("factory_info", {})
             space_player.planets = \
                 {name: None for name in player_data.get("planets", [])}

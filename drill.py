@@ -5,9 +5,7 @@ class drill:
     def __init__(self, oreAbundance, ores):
         self.curr: float = t.time()
         self.productivity = oreAbundance
-        self.common = ores['common']
-        self.mid = ores['mid']
-        self.rare = ores['rare']
+        self.ores = ores
     
     def mine(self, player):
         '''

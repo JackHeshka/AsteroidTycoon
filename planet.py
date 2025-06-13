@@ -248,10 +248,10 @@ class planet:
                 total[1] += produced[1]
                 total[2] += produced[2]
         # Display total accumulated resources
-        print('You produced:\n   ' \
-             + f'{self.oreTiers['common']}: {total[0]}\n   ' \
-             + f'{self.oreTiers['mid']}: {total[1]}\n   ' \
-             + f'{self.oreTiers['rare']}: {total[2]}')
+        print("You produced:\n   " \
+             + f"{self.oreTiers['common']}: {total[0]}\n   " \
+             + f"{self.oreTiers['mid']}: {total[1]}\n   " \
+             + f"{self.oreTiers['rare']}: {total[2]}")
         
     def displayMap(self):
         '''

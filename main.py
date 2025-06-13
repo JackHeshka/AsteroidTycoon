@@ -188,8 +188,26 @@ while True:
         elif choice == "yes":
             ## this will load in the players past game, and station layout.
             player_name = input("Please enter your username: ")
-            station_file = player_name + "_station.txt"
-            player_file = player_name + "_player.txt"
+            ##Create the file name
+            player_name_txt = "1" + player_name + ".txt"
+            ##use the laoddata modual to get the info from the the txt file
+            player_data, station_data = LD.dataLoad(player_name_txt)
+            ##Create objects for player and spaceStation
+            space_player = Pl.player(player_data["name"], player_data["money"])
+            new_station = St.spaceStation(player_data["name"])
+            ## Change the base values for the player modual
+            space_player.raw_inventory = player_data.get("raw_inventory") or {}
+            space_player.refined_inventory = player_data.get("refined_inventory") or {}
+            space_player.compound_inventory = player_data.get("compound_inventory") or {}
+            space_player.factory_info = player_data.get("factory_info", {})
+            space_player.planets = {name: None for name in player_data.get("planets", [])}
+            ## change the base values for the station class
+            new_station.base_station = station_data.get("base_station", [])
+            new_station.tile_in_station = station_data.get("tile_in_station", {})
+            new_station.unused_tiles = station_data.get("unused_tiles", {})
+            ##Create the factory and tradehub objects
+            new_factory = Fc.Factory()
+            new_tradeHub = tHub.tradeHub(new_station)
             break
         else:
             raise ValueError("Invalid input. Please enter 'yes' or 'no'")

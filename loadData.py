@@ -22,6 +22,7 @@ def dataLoad(filename):
     ## values to return
     player_data = {}
     station_data = {}
+    planet_data = {}
     ## Track the section in the text file to look at
     section = None
     inv_section = None
@@ -110,7 +111,7 @@ def dataLoad(filename):
                 pass
 
                 
-    return player_data, station_data
+    return player_data, station_data, planet_data
 
 def dataSave(space_player: Pl.player, station: St.spaceStation, filename):
     """

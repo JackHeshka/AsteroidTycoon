@@ -207,7 +207,7 @@ while True:
             ##Create the file name
             player_name_txt = "1" + player_name + ".txt"
             ##use the laoddata modual to get the info from the the txt file
-            player_data, station_data = LD.dataLoad(player_name_txt)
+            player_data, station_data, planet_data = LD.dataLoad(player_name_txt)
             ##Create objects for player and spaceStation
             space_player = Pl.player(player_data["name"], player_data["money"])
             new_station = St.spaceStation(player_data["name"])

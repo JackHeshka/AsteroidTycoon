@@ -2,12 +2,12 @@ from player import *
 import time as t
 
 class drill:
-    def __init__(self, oreAbundance, common, mid, rare):
+    def __init__(self, oreAbundance, ores):
         self.curr: float = t.time()
         self.productivity = oreAbundance
-        self.common = common
-        self.mid = mid
-        self.rare = rare
+        self.common = ores['common']
+        self.mid = ores['mid']
+        self.rare = ores['rare']
     
     def mine(self, player):
         '''

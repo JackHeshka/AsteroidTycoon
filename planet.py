@@ -18,15 +18,20 @@ class planet:
         self.name = name
         self.planetMap = self.resourceScatter()
         self.drills = self.initializeDrillVacancy(13, 13)
-        self.lowTier = r.choice(["Iron", "Coal", "Copper", "Aluminum"])
-        self.midTier = r.choice(["Gold", "Zinc", "Lithium"])
-        self.highTier = r.choice(["Diamond", "Lead", "Plutonium"])
+        self.oreTiers = {
+            "common": r.choice(["Iron", "Coal", "Copper", "Aluminum"]),
+            "mid": r.choice(["Gold", "Zinc", "Lithium"]),
+            "rare": r.choice(["Diamond", "Lead", "Plutonium"])
+        }
         self.userMap = self.initializeUserMap(14,14)
         self.user = user
 
 
     def __str__(self):
-        return f'{self.name} ({self.lowTier}, {self.midTier}, {self.highTier})'
+        return f'{self.name} ' + \
+            f"({self.oreTiers['common']}, " + \
+            f"{self.oreTiers['mid']}, " + \
+            f"{self.oreTiers['rare']})"
     
     def generateGrid(self, x, y, fill):
         '''
@@ -140,9 +145,7 @@ class planet:
                     # Add the drill
                     self.drills[f'{self.x},{self.y}'] = d.drill(
                                                         self.planetMap[self.x][self.y],
-                                                        self.lowTier, 
-                                                        self.midTier,
-                                                        self.highTier
+                                                        self.oreTiers, 
                                                         )
                     print("Drill placed!")
                     break
@@ -246,9 +249,9 @@ class planet:
                 total[2] += produced[2]
         # Display total accumulated resources
         print('You produced:\n   ' \
-             + f'{self.lowTier}: {total[0]}\n   ' \
-             + f'{self.midTier}: {total[1]}\n   ' \
-             + f'{self.highTier}: {total[2]}')
+             + f'{self.oreTiers['common']}: {total[0]}\n   ' \
+             + f'{self.oreTiers['mid']}: {total[1]}\n   ' \
+             + f'{self.oreTiers['rare']}: {total[2]}')
         
     def displayMap(self):
         '''

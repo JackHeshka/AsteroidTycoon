@@ -12,7 +12,7 @@ import loadData as LD
 
 
 def use_factory():
-    """This function will allow the player to use a factory to refine resources."""
+    """This used the factory object to let the player use the factorys they have, that is stored station cla"""
     new_factory.use_factory(space_player)  # Call the method to use the factory
  
 
@@ -39,9 +39,9 @@ def visit_planet():
             options_list = list(space_player.planets.keys())
             for index, option in enumerate(options_list, start=1):
                 print(f"{index}. {option}")
-            print("================================================================================")
+            print("=" * 80)
             choice = input(f"Enter Number (1-{len(options_list)}): ")
-            print("================================================================================")
+            print("=" * 80)
             try:
                 if choice in map(str, range(1, len(options_list) + 1)):
                     selected_option = options_list[int(choice) - 1]
@@ -58,9 +58,10 @@ def visit_planet():
             options_list = list(current_planet.planetOptions.keys())
             for index, option in enumerate(options_list, start=1):
                 print(f"{index}. {option}")
-            print("\n================================================================================")
+            print("\n")
+            print("=" * 80)
             choice = input(f"Enter Number (1-{len(options_list)}): ")
-            print("================================================================================")
+            print("=" * 80)
             try:
                 if choice in map(str, range(1, len(options_list) + 1)):
                     selected_option = options_list[int(choice) - 1]
@@ -109,14 +110,14 @@ def trade_resources():
 def add_station():
     """This function will allow the player to build a new space station."""
     new_station.printStation()  # Print the station layout
-    print("=================================================================================")
+    print("=" * 80)
     new_station.addTile()  # Allow player to add a tile to the station
     
 
 def expand_space_station():
     """This function will allow the player to expand their space station and build factories."""
     new_station.printStation()  # Print the station layout
-    print("=================================================================================")
+    print("=" * 80)
     new_station.buyTile(space_player)  # Allow player to expand the station
 
 
@@ -154,15 +155,16 @@ game_play_options: Dict[str, Callable[[], None]] = {
 def main_menu():
     """This function displays the main menu and lets the player choose where they want to go in the game."""
     while True:
-        print("================================================================================")
+        print("=" * 80)
         print("You are at the spaces station control center.")
         print("How would you like to proceed?\n")
         options_list = list(game_play_options.keys())
         for index, option in enumerate(options_list, start=1):
             print(f"{index}. {option}")
-        print("\n================================================================================")
+        print("\n")
+        print("=" * 80)
         choice = input(f"Enter Number (1-{len(options_list)}): ")
-        print("================================================================================")
+        print("=" * 80)
         try:
             if choice in map(str, range(1, len(options_list) + 1)):
                 selected_option = options_list[int(choice) - 1]
@@ -174,20 +176,21 @@ def main_menu():
         except ValueError as e:
             print(f"Invalid choice. {e}. Error: Please try again.")
 
-print("================================================================================")
+print("=" * 80)
 print("This game is an aventrue based space exploration game. " \
 "\nYou will be able to move around the galaxy, explore planets, " \
 "\nand gathering resorces from mines. You will then be able to " \
 "\ntrade these resources for money, which you can use to build factorys, " \
 "\nand expand you spaces station and mining oporation. ")
-print("================================================================================")
+print("=" * 80)
+
 
 
 while True:
     try:
         print("Do you want to load a previous game?")
         choice = input("Enter (yes/no): ").strip().lower()
-        print("================================================================================")
+        print("=" * 80)
         if choice == "no":
         ## for new players, we will create a new player and space station that will later be saved to a file.
             player_name = input("Please create a player name: ")

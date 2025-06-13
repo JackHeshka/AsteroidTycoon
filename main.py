@@ -211,7 +211,7 @@ while True:
             ##Create objects for player and spaceStation
             space_player = Pl.player(player_data["name"], player_data["money"])
             new_station = St.spaceStation(player_data["name"])
-            ## Change the base values for the player modual
+            ## Change the base values for the player module
             space_player.raw_inventory = player_data.get("raw_inventory") or {}
             space_player.refined_inventory = player_data.get("refined_inventory") or {}
             space_player.compound_inventory = player_data.get("compound_inventory") or {}

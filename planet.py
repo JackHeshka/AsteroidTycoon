@@ -130,7 +130,7 @@ class planet:
         '''
         This function adds a drill to the current tile if vacant
         '''
-        if self.drills[f'{self.x},{self.y}'] != None:
+        if self.drills[f'{self.x},{self.y}'] == None:
             while True:
                 choice = input(f'This purchase will cost 150 credits,\
                                 do you wish to proceed? [Y/N]: ').strip().lower()

@@ -80,7 +80,7 @@ def visit_planet():
 def establish_mining_operation():
     """This function will allow the player to pick a planet and extract resources from it,
     using a mining function."""
-    planet_cost = 500*len(space_player.planets)^2
+    planet_cost = 500*len(space_player.planets)**2
     while True:
         choice = input(f'This purchase will cost {planet_cost} creadits,' +
                         f' do you wish to proceed? [Y/N]: ').strip().lower()

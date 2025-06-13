@@ -8,6 +8,8 @@ import station as St
 import tradeHub as tHub
 ## This program would not work without the typing module
 from typing import Callable, Dict
+## Load data file
+import loadData as LD
 
 
 def use_factory():
@@ -80,8 +82,8 @@ def establish_mining_operation():
     using a mining function."""
     planet_cost = 500*len(space_player.planets)^2
     while True:
-        choice = input(f'This purchase will cost {planet_cost} creadits,\
-                        do you wish to proceed? [Y/N]: ').strip().lower()
+        choice = input(f'This purchase will cost {planet_cost} creadits,' +
+                        f' do you wish to proceed? [Y/N]: ').strip().lower()
         if space_player.money >= planet_cost and choice == 'y':
             planet_name = random.choice(list(open('planetNames.txt')))
             while planet_name in space_player.planets.keys():
@@ -121,6 +123,17 @@ def expand_space_station():
 
 def exit_game():
     """This function will exit the game."""
+    while True:
+        try:
+            end = input("Would you like to save your station data (y or n):").lower().strip()
+            if end == 'y':
+                LD.dataSave(space_player, new_station, player_name_txt)
+                print("data has been saved")
+                break
+            elif end == 'n':
+                break
+        except:
+            print("Error Please try again")
     print("Exiting game. Goodbye!")
     exit()
 
@@ -179,6 +192,7 @@ while True:
         if choice == "no":
         ## for new players, we will create a new player and space station that will later be saved to a file.
             player_name = input("Please create a player name: ")
+            player_name_txt = "1" + player_name + ".txt"
             starting_money = 1000  # Set a default starting money value
             space_player = Pl.player(player_name, starting_money)
             new_station = St.spaceStation(player_name)

@@ -5,7 +5,7 @@ to have there data loaded in my me more dificult will solve next day. Will likly
 of the planet to initilze the objext, the load the data into that object that is stored after it.
 """
 
-# Kinda bad, moving to pickle
+# Kinda bad, moving to pickle in dataHandling.py
 
 import player as Pl
 import station as St

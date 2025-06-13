@@ -41,6 +41,11 @@ def dataLoad(filename):
                 section = "station"
                 inv_section = None
                 continue
+            if line == "PLANET":
+                section = "planet"
+                inv_section = None
+                continue
+
                 
             ## if the section is player
             if section == "player":
@@ -100,6 +105,11 @@ def dataLoad(filename):
                 elif inv_section in ("tile_in_station", "unused_tiles") and ":" in line:
                     k, v = line.strip().split(":")
                     station_data[inv_section][int(k)] = int(v)
+
+            elif section == "planet":
+                pass
+
+                
     return player_data, station_data
 
 def dataSave(space_player: Pl.player, station: St.spaceStation, filename):

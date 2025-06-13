@@ -5,8 +5,12 @@ to have there data loaded in my me more dificult will solve next day. Will likly
 of the planet to initilze the objext, the load the data into that object that is stored after it.
 """
 
+# Kinda bad, moving to pickle
+
 import player as Pl
 import station as St
+import planet as p
+import drill as d
 
 baseFile = "baseFileFormat.txt"
 
@@ -97,7 +101,7 @@ def dataLoad(filename):
                     ## change the inv_section
                     inv_section = "unused_tiles"
                     station_data["unused_tiles"] = {}
-                elif inv_section == "base_station" and "," in line:
+                elif inv_section == "base_station" and "," in line: # Loads a dictionary
                     ## make row load the data for the text file, by looping through the 
                     # rows and spliting the line at the every , and save the data to row.
                     # split removes leading white space. 
@@ -161,5 +165,8 @@ def dataSave(space_player: Pl.player, station: St.spaceStation, filename):
             f.write(f"  {k}:{v}\n")
         f.write("unused_tiles:\n")
         for k, v in station.unused_tiles.items():
+            f.write(f"  {k}:{v}\n")
+        # Save planet data
+        for k, v in p.drills:
             f.write(f"  {k}:{v}\n")
     print(f"Game saved to {filename}")

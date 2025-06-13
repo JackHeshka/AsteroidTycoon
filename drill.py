@@ -20,9 +20,9 @@ class drill:
         produced = int(t.time() - self.curr)*self.productivity
         self.curr = t.time()
         # Add resources to player inventory
-        player.raw_inventory[self.common] += round(0.7*produced)
-        player.raw_inventory[self.mid] += round(0.25*produced)
-        player.raw_inventory[self.rare] += round(0.05*produced)
+        player.raw_inventory[self.ores['common']] += round(0.7*produced)
+        player.raw_inventory[self.ores['mid']] += round(0.25*produced)
+        player.raw_inventory[self.ores['rare']] += round(0.05*produced)
         return [round(0.7*produced),
                  round(0.25*produced),
                  round(0.05*produced)]

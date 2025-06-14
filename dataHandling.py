@@ -54,9 +54,10 @@ def wipeUserLog():
         pickle.dump([], file)
 
 
-def getUserLog():
-    try:
-        with open(f"saves\\userLog.pkl", 'rb') as file:
-            return pickle.load(file)
-    except EOFError as e:
-        wipeUserLog()
+def getUserLog() -> list:
+    while True:
+        try:
+            with open(f"saves\\userLog.pkl", 'rb') as file:
+                return pickle.load(file)
+        except EOFError as e:
+            wipeUserLog()

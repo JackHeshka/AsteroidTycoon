@@ -53,7 +53,6 @@ def newUser(user:str):
 
 def wipeUserLog():
     with open(f"saves\\userLog.pkl", 'wb') as file:
-        pickle.dump(None, file)
         pickle.dump([], file)
 
 

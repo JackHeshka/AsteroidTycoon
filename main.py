@@ -143,7 +143,10 @@ def exit_game():
     """
     while True:
         try:
-            end = input("Would you like to save your data (y or n):")
+            try:
+                end = input("Would you like to save your data (y or n):")
+            except EOFError as e:
+                print(f'Error: {e}')
             if end.lower().strip() == 'y':
                 #LD.dataSave(space_player, new_station, player_name_txt)
                 if space_player.name.lower() not in dh.getUserLog():
@@ -159,7 +162,7 @@ def exit_game():
             print(f'Error: {e}')
         except FileNotFoundError as e:
             print(f'Error: {e}')
-    print("Exiting game. Goodbye!")
+    print("Exiting game. See you next time!")
     exit()
 
 

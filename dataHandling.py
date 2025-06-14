@@ -36,8 +36,8 @@ def loadData(user:str):
 
 
 def newUser(user:str):
-    user = user.lower()
     setup = []
+    user = user.lower()
     while True:
         try:
             with open(f"saves\\userLog.pkl", 'rb') as file:

@@ -37,6 +37,7 @@ def loadData(user:str):
 
 def newUser(user:str):
     user = user.lower()
+    setup = []
     while True:
         try:
             with open(f"saves\\userLog.pkl", 'rb') as file:
@@ -47,7 +48,7 @@ def newUser(user:str):
             break
         except EOFError:
             with open(f"saves\\userLog.pkl", 'wb') as file:
-                pickle.dump([], file)
+                pickle.dump(setup, file)
 
 
 def getUserLog():

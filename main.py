@@ -149,9 +149,12 @@ def exit_game():
                 print(f'Error: {e}')
             if end.lower().strip() == 'y':
                 #LD.dataSave(space_player, new_station, player_name_txt)
-                if space_player.name.lower() not in dh.getUserLog():
-                    dh.newUser(space_player.name.lower())
-                dh.saveData(space_player, new_station)
+                try:
+                    if space_player.name.lower() not in dh.getUserLog():
+                        dh.newUser(space_player.name.lower())
+                    dh.saveData(space_player, new_station)
+                except EOFError:
+                    dh.wipeUserLog()
                 print("Data has been saved")
                 break
             elif end == 'n':

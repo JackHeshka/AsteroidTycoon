@@ -57,3 +57,9 @@ def getUserLog():
             return pickle.load(file)
     except EOFError as e:
         exit(f'Save data has been corrupted (Error: {e})')
+
+
+def wipeUserLog():
+    with open(f"saves\\userLog.pkl", 'wb') as file:
+        pickle.dump(None, file)
+        pickle.dump([], file)

@@ -51,15 +51,16 @@ def newUser(user:str):
                 pickle.dump(setup, file)
 
 
+def wipeUserLog():
+    with open(f"saves\\userLog.pkl", 'wb') as file:
+        pickle.dump(None, file)
+        pickle.dump([], file)
+
+
 def getUserLog():
     try:
         with open(f"saves\\userLog.pkl", 'rb') as file:
             return pickle.load(file)
     except EOFError as e:
+        wipeUserLog()
         exit(f'Save data has been corrupted (Error: {e})')
-
-
-def wipeUserLog():
-    with open(f"saves\\userLog.pkl", 'wb') as file:
-        pickle.dump(None, file)
-        pickle.dump([], file)

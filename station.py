@@ -168,7 +168,6 @@ class spaceStation:
                     tile_choice_input = int(tile_choice_input)
                     if tile_choice_input <= len(available_tiles):
                         tile_id = available_tiles[tile_choice_input - 1]
-                        self.unused_tiles[tile_id] -= 1
                         if choice == "1":
                             loop = False
                         self.add(tile_id)
@@ -222,6 +221,7 @@ class spaceStation:
                 ## adds the tile to the base station 
                 self.base_station[row][col] = tile_to_add
                 print(f"Tile placed at ({row}, {col}).")
+                self.unused_tiles[tile_to_add] -= 1
                 self.printStation()
         except ValueError:
             print("Invalid input. Please enter a number.")

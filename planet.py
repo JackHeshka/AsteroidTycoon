@@ -137,8 +137,8 @@ class planet:
         '''
         if self.drills[f'{self.x},{self.y}'] == None:
             while True:
-                choice = input(f'This purchase will cost 150 credits,\
-                                do you wish to proceed? [Y/N]: ').strip().lower()
+                choice = input(f'This purchase will cost 150 credits, ' +
+                                'do you wish to proceed? [Y/N]: ').strip().lower()
                 if self.user.money >= 150 and choice == 'y':
                     # Update user map
                     self.userMap[self.y+1][self.x+1] += '\n(Drilling)'
@@ -164,8 +164,8 @@ class planet:
         spot to mine or not
         '''
         while True:
-            choice = input(f'This purchase will cost 50 credits,\
-                            do you wish to proceed? [Y/N]: ').strip().lower()
+            choice = input(f'This purchase will cost 50 credits, ' +
+                            'do you wish to proceed? [Y/N]: ').strip().lower()
             if self.user.money >= 50 and choice == 'y':
                 # Convert ore concentration to a percentage
                 tile = 100*self.planetMap[self.y][self.x]

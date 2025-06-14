@@ -13,11 +13,14 @@ def saveData(user:player.player, station:station.spaceStation):
     player_pkg = user
     station_pkg = station
 
-    with open(f"saves\\{user.name.lower()}_playerData.pkl", 'wb') as file:
-        pickle.dump(player_pkg, file)
+    try:
+        with open(f"saves\\{user.name.lower()}_playerData.pkl", 'wb') as file:
+            pickle.dump(player_pkg, file)
 
-    with open(f"saves\\{user.name.lower()}_stationData.pkl", 'wb') as file:
-        pickle.dump(station_pkg, file)
+        with open(f"saves\\{user.name.lower()}_stationData.pkl", 'wb') as file:
+            pickle.dump(station_pkg, file)
+    except:
+        print("Something went wrong")
 
 
 def loadData(user:str):
@@ -51,5 +54,5 @@ def getUserLog():
     try:
         with open(f"saves\\userLog.pkl", 'rb') as file:
             return pickle.load(file)
-    except EOFError:
-        exit('Save data has been corrupted')
+    except EOFError as e:
+        exit(f'Save data has been corrupted (Error: {e})')

@@ -151,7 +151,7 @@ def exit_game():
                 if space_player.name.lower() not in dh.getUserLog():
                     dh.newUser(space_player.name.lower())
                 dh.saveData(space_player, new_station)
-                print("data has been saved")
+                print("Data has been saved")
                 break
             elif end == 'n':
                 break

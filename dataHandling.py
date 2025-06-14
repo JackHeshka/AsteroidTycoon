@@ -26,13 +26,13 @@ def saveData(user:player.player, station:station.spaceStation):
 def loadData(user:str):
     user = user.lower()
     
-    with open(f"saves\\{user}_planetData.pkl", 'rb') as file:
-        planet_pkg = pickle.load(file)
+    with open(f"saves\\{user}_playerData.pkl", 'rb') as file:
+        player_pkg = pickle.load(file)
 
     with open(f"saves\\{user}_stationData.pkl", 'rb') as file:
         station_pkg = pickle.load(file)
 
-    return [planet_pkg, station_pkg]
+    return [player_pkg, station_pkg]
 
 
 def newUser(user:str):

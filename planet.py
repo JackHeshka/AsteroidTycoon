@@ -264,5 +264,5 @@ class planet:
         "Survey Ground": groundSurvey,
         "Move": movePos,
         "Show Map": displayMap,
-        "Return to station and harves minerals": leavePlanet
+        "Return to station and harvest minerals": leavePlanet
     }

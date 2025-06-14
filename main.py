@@ -69,7 +69,6 @@ def visit_planet():
             options_list = list(current_planet.planetOptions.keys())
             for index, option in enumerate(options_list, start=1):
                 print(f"{index}. {option}")
-            print("\n")
             print("=" * 80)
             choice = input(f"Enter Number (1-{len(options_list)}): ")
             print("=" * 80)
@@ -94,7 +93,7 @@ def establish_mining_operation():
     """
     planet_cost = 500*len(space_player.planets)**2
     while True:
-        choice = input(f'This purchase will cost {planet_cost} creadits,' +
+        choice = input(f'This purchase will cost {planet_cost} credits,' +
                         f' do you wish to proceed? [Y/N]: ').strip().lower()
         if space_player.money >= planet_cost and choice == 'y':
             planet_name = random.choice(list(open('planetNames.txt')))

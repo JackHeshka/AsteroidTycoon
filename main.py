@@ -8,6 +8,7 @@ import tradeHub as tHub
 ## This program would not work without the typing module
 from typing import Callable, Dict
 ## Load data file
+import dataHandling as dh
 import loadData as LD
 
 
@@ -143,10 +144,13 @@ def exit_game():
     """
     while True:
         try:
-            end = input("Would you like to save your station" +
+            end = input("Would you like to save your " +
                          "data (y or n):").lower().strip()
             if end == 'y':
-                LD.dataSave(space_player, new_station, player_name_txt)
+                #LD.dataSave(space_player, new_station, player_name_txt)
+                if space_player.name.lower() not in dh.getUserLog():
+                    dh.newUser(space_player.name.lower())
+                dh.saveData(space_player, new_station)
                 print("data has been saved")
                 break
             elif end == 'n':
@@ -215,7 +219,12 @@ while True:
         if choice == "no":
             """ for new players, we will create a new player 
             and space station that will later be saved to a file."""
-            player_name = input("Please create a player name: ")
+            while True:
+                player_name = input("Please create a player name: ")
+                if player_name.isalpha():
+                    break
+                else:
+                    print("Please use only alphabetic characters.\n")
             player_name_txt = "1" + player_name + ".txt"
             starting_money = 1000  # Set a default starting money value
             space_player = Pl.player(player_name, starting_money)
@@ -224,6 +233,32 @@ while True:
             new_tradeHub = tHub.tradeHub(new_station)
             break
         elif choice == "yes":
+            while True:
+                current_name = None
+                print("Saved users:")
+                options_list = dh.getUserLog()
+                if len(options_list) <= 0:
+                    raise ValueError('No saved user profiles!')
+                for index, option in enumerate(options_list, start=1):
+                    print(f"{index}. {option}")
+                print("=" * 80)
+                choice = input(f"Enter Number (1-{len(options_list)}): ")
+                print("=" * 80)
+                try:
+                    if choice in map(str, range(1, len(options_list) + 1)):
+                        current_name = options_list[int(choice) - 1]
+                    elif not choice.isdigit():
+                        raise ValueError("Enter a Number")
+                    elif int(choice) not in range(1, len(options_list) + 1):
+                        raise ValueError("Choice a Number in range")
+                except ValueError as e:
+                    print(f"Invalid choice. {e}. Error: Please try again.")
+                if current_name != None:
+                    break
+            data_pkg = dh.loadData(current_name)
+            space_player = data_pkg[0]
+            new_station = data_pkg[1]
+            '''
             ## this will load in the players past game, and station layout.
             player_name = input("Please enter your username: ")
             ## Create the file name
@@ -250,6 +285,7 @@ while True:
             ## Create the factory and tradehub objects
             new_factory = Fc.Factory()
             new_tradeHub = tHub.tradeHub(new_station)
+            '''
             break
         else:
             raise ValueError("Invalid input. Please enter 'yes' or 'no'")

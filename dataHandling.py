@@ -8,34 +8,48 @@ import planet as planet
 import player as player
 import station as station
 
+
 def saveData(user:player.player, station:station.spaceStation):
-    planet_pkg = {}
-
-    for n, p in user.planets:
-        planet_pkg[n] = p
-
     player_pkg = user
-
     station_pkg = station
 
-    with open(f"saves\{user.name}_planetData.pkl", 'wb') as file:
-        pickle.dump(planet_pkg, file)
-
-    with open(f"saves\{user.name}_playerData.pkl", 'wb') as file:
+    with open(f"saves\\{user.name.lower()}_playerData.pkl", 'wb') as file:
         pickle.dump(player_pkg, file)
 
-    with open(f"saves\{user.name}_stationData.pkl", 'wb') as file:
+    with open(f"saves\\{user.name.lower()}_stationData.pkl", 'wb') as file:
         pickle.dump(station_pkg, file)
 
 
 def loadData(user:str):
-    with open(f"saves\{user}_planetData.pkl", 'rb') as file:
+    user = user.lower()
+    
+    with open(f"saves\\{user}_planetData.pkl", 'rb') as file:
         planet_pkg = pickle.load(file)
 
-    with open(f"saves\{user}_playerData.pkl", 'rb') as file:
-        player_pkg = pickle.load(file)
-
-    with open(f"saves\{user}_stationData.pkl", 'rb') as file:
+    with open(f"saves\\{user}_stationData.pkl", 'rb') as file:
         station_pkg = pickle.load(file)
 
-    return [planet_pkg, player_pkg, station_pkg]
+    return [planet_pkg, station_pkg]
+
+
+def newUser(user:str):
+    user = user.lower()
+    while True:
+        try:
+            with open(f"saves\\userLog.pkl", 'rb') as file:
+                users:list = pickle.load(file)
+                users.append(user.lower())
+            with open(f"saves\\userLog.pkl", 'wb') as file:
+                pickle.dump(users, file)
+            break
+        except EOFError:
+            with open(f"saves\\userLog.pkl", 'wb') as file:
+                pickle.dump([], file)
+
+
+def getUserLog():
+    try:
+        with open(f"saves\\userLog.pkl", 'rb') as file:
+            return pickle.load(file)
+    except EOFError:
+        exit('Save data has been corrupted')

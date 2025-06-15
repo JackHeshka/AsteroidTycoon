@@ -252,7 +252,6 @@ while True:
             starting_money = 1000  # Set a default starting money value
             space_player = Pl.player(player_name, starting_money)
             new_station = St.spaceStation(player_name)
-            new_factory = Fc.Factory()
             new_tradeHub = tHub.tradeHub(new_station)
             break
         elif choice == "y":
@@ -314,6 +313,7 @@ while True:
             raise ValueError("Invalid input. Please enter 'yes' or 'no'")
     except ValueError as e:
         print(f"Error: {e}. Please try again.")
+new_factory = Fc.Factory()
 print("=" * 80)
 print("Loading your space station layout...")
 new_station.printStation()  ## Print the station layout

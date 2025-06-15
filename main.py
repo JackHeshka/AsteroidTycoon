@@ -79,7 +79,8 @@ def visit_planet():
             try:
                 if choice in map(str, range(1, len(options_list) + 1)):
                     selected_option = options_list[int(choice) - 1]
-                    current_planet.planetOptions[selected_option](current_planet)
+                    current_planet.planetOptions[selected_option]\
+                        (current_planet)
                 elif not choice.isdigit():
                     raise ValueError("Enter a Number")
                 elif int(choice) not in range(1, len(options_list) + 1):

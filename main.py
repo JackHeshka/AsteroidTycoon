@@ -96,14 +96,17 @@ def establish_mining_operation():
     This function will allow the player to pick a planet and extract 
     resources from it, using a mining function.
     """
-    planet_cost = 500*len(space_player.planets)**2
+    planet_cost = 500*len(space_player.planets)**2 # Calculate the cost
     while True:
+        # User confirmation
         choice = input(f'This purchase will cost {planet_cost} credits,' +
                         f' do you wish to proceed? [Y/N]: ').strip().lower()
         if space_player.money >= planet_cost and choice == 'y':
+            # Randomize planet name, ensuring it is unique
             planet_name = random.choice(list(open('planetNames.txt')))
             while planet_name in space_player.planets.keys():
                 planet_name = random.choice(list(open('planetNames.txt')))
+            # Create the planet object
             space_player.planets[planet_name] = Planet.planet\
                 (planet_name, space_player)
             print(f"\nPurchased mining rights to" +

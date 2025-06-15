@@ -13,28 +13,32 @@ import loadData as LD
 
 
 def use_factory():
-    """This used the factory object to let the player 
+    """
+    This used the factory object to let the player 
     use the factorys they have, info about the factory is stored in. 
     """
     new_factory.use_factory(space_player)
  
 
 def explore_space_station():
-    """This function will print the station to show the user 
+    """
+    This function will print the station to show the user 
     where their tile are.
     """
     new_station.printStation()
 
 
 def player_inventory():
-    """This function will print the player's inventory of 
+    """
+    This function will print the player's inventory of 
     resources and credits.
     """
     Pl.player.print_inventory(space_player)  
 
 
 def visit_planet():
-    """This function will allow the player to pick a planet that 
+    """
+    This function will allow the player to pick a planet that 
     they have a mine on and gather the resorces that they have 
     mined while they have been away from the planet.
     """
@@ -88,7 +92,8 @@ def visit_planet():
 
 
 def establish_mining_operation():
-    """This function will allow the player to pick a planet and extract 
+    """
+    This function will allow the player to pick a planet and extract 
     resources from it, using a mining function.
     """
     planet_cost = 500*len(space_player.planets)**2
@@ -117,7 +122,8 @@ def establish_mining_operation():
 
 
 def trade_resources():
-    """This function will allow the player to trade resources 
+    """
+    This function will allow the player to trade resources 
     they have mined for credits.
     """
     tHub.tradeHub.trade_resources(new_station, space_player)
@@ -131,7 +137,8 @@ def add_station():
     
 
 def expand_space_station():
-    """This function will allow the player to expand their space 
+    """
+    This function will allow the player to expand their space 
     station and build factories."""
     new_station.printStation()  # Print the station layout
     print("=" * 80)
@@ -139,7 +146,8 @@ def expand_space_station():
 
 
 def exit_game():
-    """This function will exit the game.
+    """
+    This function will exit the game.
     """
     while True:
         try:
@@ -186,7 +194,8 @@ game_play_options: Dict[str, Callable[[], None]] = {
 
 
 def main_menu():
-    """This function displays the main menu and lets the player 
+    """
+    This function displays the main menu and lets the player 
     choose where they want to go in the game.
     """
     while True:

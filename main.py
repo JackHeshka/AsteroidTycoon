@@ -144,7 +144,7 @@ def exit_game():
     while True:
         try:
             try:
-                end = input("Would you like to save your data (y or n):")
+                end = input("Would you like to save your data [Y/N]:")
             except EOFError as e:
                 print(f'Error: {e}')
             if end.lower().strip() == 'y':
@@ -224,9 +224,9 @@ print("=" * 80)
 while True:
     try:
         print("Do you want to load a previous game?")
-        choice = input("Enter (yes/no): ").strip().lower()
+        choice = input("Enter [Y/N]: ").strip().lower()
         print("=" * 80)
-        if choice == "no":
+        if choice == "n":
             """ for new players, we will create a new player 
             and space station that will later be saved to a file."""
             while True:
@@ -242,7 +242,7 @@ while True:
             new_factory = Fc.Factory()
             new_tradeHub = tHub.tradeHub(new_station)
             break
-        elif choice == "yes":
+        elif choice == "y":
             while True:
                 current_name = None
                 print("Saved users:")

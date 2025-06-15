@@ -1,32 +1,37 @@
 import player as Pl 
 
 class Factory:
-    """Here is where refinement of resources will take place."""
-    
+    """Here is where refinement of resources will take place.
+    """
     def __init__(self):
         pass
 
     def use_factory(self, space_player: Pl.player):
-        """This function will allow the player to pick which factory to refine resources in."""
-        
-        inx = 1 # number to display for user input
+        """This function will allow the player to 
+        pick which factory to refine resources in.
+        """
+        inx = 1 ## number to display for user input
         for factory_name, factory_data in space_player.factory_info.items():
             if factory_data["num"] > 0:
-                print(f"{inx}. You have {factory_data['num']}: {factory_data['description']}")
+                print(f"{inx}. You have {factory_data['num']}: "+
+                      f"{factory_data['description']}")
                 inx += 1
-        available_factories = [] # this list will hold the names of the factories that the player has available to use
+        available_factories = [] ## this list will hold the names of the 
+                                  # factories that the player has available to use
         for factory_name, factory_data in space_player.factory_info.items():
             if factory_data["num"] > 0:
                 available_factories.append(factory_name)
-        if not available_factories: # if the player has no factories available
+        if not available_factories: ## if the player has no factories available
             print("You do not own any factories to use.")
             return
         else:
             print("These are your factorys commander.")
-        print("\n================================================================================")
+        print("\n")
+        print("=" * 80)
         while True:
             try:
-                choice = input("Enter the number of the factory you want to use: ")
+                choice = input("Enter the number of the "+
+                               " factory you want to use: ")
                 if not choice.isdigit():
                     raise ValueError("Input must be a number")
                 choice = int(choice)
@@ -54,81 +59,106 @@ class Factory:
                     raise ValueError("Invalid number.")
             except ValueError as e:
                 print(f"Error: {e}. Please try again.")
-                print("================================================================================")
+                print("=" * 80)
 
     def factory_1(self, space_player: Pl.player):
-        """This function will allow the player to use Factory 1, to double their input."""
+        """This function will allow the player to use Factory 1,
+         to double their input.
+         """
         print(space_player.factory_info["Factory 1"]["description"]+"\n")
         available_resources = []
         inx = 1
         for r in space_player.raw_inventory:
-            if space_player.raw_inventory[r] > 0: # Check if the player has any of this resource
+            if space_player.raw_inventory[r] > 0: 
+                ## Check if the player has any of this resource
                 available_resources.append(r)
                 print(f"{inx}. {r} - {space_player.raw_inventory[r]} units")
                 inx += 1
-        print("\n================================================================================")
+        print("\n")
+        print("=" * 80)
         if available_resources == []:
             print("You do not have any resources to refine.")
             return
         else:
             while True:
                 try:
-                    choice = int(input("Enter the number of the resource you want to refine: "))
+                    choice = int(input("Enter the number of the "+
+                                       "resource you want to refine: "))
                     if 1 <= choice <= len(available_resources):
                         selected_resource = available_resources[choice - 1]
-                        amount = int(input(f"How many units of {selected_resource} do you want to refine? "))
+                        amount = int(input("How many "+
+                                           f"units of {selected_resource}"+
+                                           " do you want to refine? "))
                         if amount <= 0:
                             raise ValueError("Amount must be positive.")
-                        if amount > space_player.raw_inventory[selected_resource]:
-                            raise ValueError("You do not have enough of that resource.")
-                        # Perform refinement
-                        refined_amount = amount * 2  # Factory 1 doubles the input
-                        space_player.raw_inventory[selected_resource] -= amount # Reduce raw inventory
-                        space_player.refined_inventory[selected_resource] += refined_amount # Add to refined inventory
-                        print(f"Refined {amount} units of {selected_resource} into {refined_amount} units of refined {selected_resource}.")
+                        if amount > space_player.raw_inventory\
+                            [selected_resource]:
+                            raise ValueError("You do not have enough of"+
+                                             " that resource.")
+                        ## Perform refinement
+                        refined_amount = amount * 2  ## Factory 1 doubles the input
+                        space_player.raw_inventory[selected_resource] -= \
+                            amount ## Reduce raw inventory
+                        space_player.refined_inventory[selected_resource]\
+                              += refined_amount ##Add to refined inventory
+                        print(f"Refined {amount} units of {selected_resource}"+
+                              f" into {refined_amount} units of refined "+
+                              f"{selected_resource}.")
                         break
                     else:
                         raise ValueError("Invalid number")
                 except ValueError as e:
                     print(f"Error: {e}. Please try again.")
-                    print("================================================================================")
+                    print("=" * 80)
     
     def factory_2(self, space_player: Pl.player):
-        """This function will allow the player to use Factory 2."""
+        """This function will allow the player to use Factory 2.
+        """
         print(space_player.factory_info["Factory 2"]["description"]+"\n")
         available_resources = []
         inx = 1
         for r in space_player.raw_inventory:
-            if space_player.raw_inventory[r] > 0: # Check if the player has any of this resource
+            if space_player.raw_inventory[r] > 0: 
+                ## Check if the player has any of this resource
                 available_resources.append(r)
                 print(f"{inx}. {r} - {space_player.raw_inventory[r]} units")
                 inx += 1
-        print("\n================================================================================")
+        print("\n")
+        print("=" * 80)
         if available_resources == []:
             print("You do not have any resources to refine.")
             return
         else:
             while True:
                 try:
-                    choice = int(input("Enter the number of the resource you want to refine: "))
+                    choice = int(input("Enter the number of the "
+                                       +"resource you want to refine: "))
                     if 1 <= choice <= len(available_resources):
                         selected_resource = available_resources[choice - 1]
-                        amount = int(input(f"How many units of {selected_resource} do you want to refine? "))
+                        amount = int(input("How many units of"+
+                                           f" {selected_resource} "+
+                                           "do you want to refine? "))
                         if amount <= 0:
                             raise ValueError("Amount must be positive.")
-                        if amount > space_player.raw_inventory[selected_resource]:
-                            raise ValueError("You do not have enough of that resource.")
-                        # Perform refinement
-                        refined_amount = amount * 3  # Factory 1 doubles the input
-                        space_player.raw_inventory[selected_resource] -= amount # Reduce raw inventory
-                        space_player.refined_inventory[selected_resource] += refined_amount # Add to refined inventory
-                        print(f"Refined {amount} units of {selected_resource} into {refined_amount} units of refined {selected_resource}.")
+                        if amount > space_player.raw_inventory\
+                            [selected_resource]:
+                            raise ValueError("You do not have "+
+                                             "enough of that resource.")
+                        ## Perform refinement
+                        refined_amount = amount * 3  ## Factory 1 doubles the input
+                        space_player.raw_inventory[selected_resource] \
+                              -= amount ## Reduce raw inventory
+                        space_player.refined_inventory[selected_resource] \
+                              += refined_amount # Add to refined inventory
+                        print(f"Refined {amount} units of {selected_resource}"+
+                              f" into {refined_amount} units of refined "+
+                              f"{selected_resource}.")
                         break
                     else:
                         raise ValueError("Invalid number")
                 except ValueError as e:
                     print(f"Error: {e}. Please try again.")
-                    print("================================================================================")
+                    print("=" * 80)
 
     def factory_3(self, space_player: Pl.player):
         """This function will allow the player to use Factory 3."""
@@ -136,11 +166,13 @@ class Factory:
         available_resources = []
         inx = 1
         for r in space_player.raw_inventory:
-            if space_player.raw_inventory[r] > 0: # Check if the player has any of this resource
+            if space_player.raw_inventory[r] > 0: 
+                # Check if the player has any of this resource
                 available_resources.append(r)
                 print(f"{inx}. {r} - {space_player.raw_inventory[r]} units")
                 inx += 1
-        print("\n================================================================================")
+        print("\n")
+        print("=" * 80)
         if available_resources == []:
             print("You do not have any resources to refine.")
             return
@@ -165,7 +197,7 @@ class Factory:
                         raise ValueError("Invalid number")
                 except ValueError as e:
                     print(f"Error: {e}. Please try again.")
-                    print("================================================================================")
+                    print("=" * 80)
 
     def factory_4(self, space_player: Pl.player):
         """This function will allow the player to use Factory 4."""
@@ -177,7 +209,7 @@ class Factory:
                 available_resources.append(r)
                 print(f"{inx}. {r} - {space_player.raw_inventory[r]} units")
                 inx += 1
-        print("\n================================================================================")
+        print("=" * 80)
         if available_resources == []:
             print("You do not have any resources to refine.")
             return
@@ -202,7 +234,7 @@ class Factory:
                         raise ValueError("Invalid number")
                 except ValueError as e:
                     print(f"Error: {e}. Please try again.")
-                    print("================================================================================")
+                    print("=" * 80)
 
     def factory_5(self, space_player: Pl.player):
         """This function will allow the player to use Factory 5."""
@@ -214,7 +246,7 @@ class Factory:
                 available_resources.append(r)
                 print(f"{inx}. {r} - {space_player.raw_inventory[r]} units")
                 inx += 1
-        print("\n================================================================================")
+        print("=" * 80)
         if available_resources == []:
             print("You do not have any resources to refine.")
             return
@@ -239,7 +271,7 @@ class Factory:
                         raise ValueError("Invalid number")
                 except ValueError as e:
                     print(f"Error: {e}. Please try again.")
-                    print("================================================================================")
+                    print("=" * 80)
 
     def factory_6(self, space_player: Pl.player):
         """This function will allow the player to use Factory 6."""
@@ -251,7 +283,8 @@ class Factory:
                 available_resources.append(r)
                 print(f"{inx}. {r} - {space_player.refined_inventory[r]} units")
                 inx += 1
-        print("\n================================================================================")
+        print("\n")
+        print("=" * 80)
         if available_resources == []:
             print("You do not have any resources to refine.")
             return
@@ -276,4 +309,4 @@ class Factory:
                         raise ValueError("Invalid number")
                 except ValueError as e:
                     print(f"Error: {e}. Please try again.")
-                    print("================================================================================")
+                    print("=" * 80)

@@ -149,7 +149,7 @@ class Factory:
                         space_player.raw_inventory[selected_resource] \
                               -= amount ## Reduce raw inventory
                         space_player.refined_inventory[selected_resource] \
-                              += refined_amount # Add to refined inventory
+                              += refined_amount ## Add to refined inventory
                         print(f"Refined {amount} units of {selected_resource}"+
                               f" into {refined_amount} units of refined "+
                               f"{selected_resource}.")
@@ -167,7 +167,7 @@ class Factory:
         inx = 1
         for r in space_player.raw_inventory:
             if space_player.raw_inventory[r] > 0: 
-                # Check if the player has any of this resource
+                ## Check if the player has any of this resource
                 available_resources.append(r)
                 print(f"{inx}. {r} - {space_player.raw_inventory[r]} units")
                 inx += 1
@@ -179,19 +179,28 @@ class Factory:
         else:
             while True:
                 try:
-                    choice = int(input("Enter the number of the resource you want to refine: "))
+                    choice = int(input("Enter the number of the"+
+                                       " resource you want to refine: "))
                     if 1 <= choice <= len(available_resources):
                         selected_resource = available_resources[choice - 1]
-                        amount = int(input(f"How many units of {selected_resource} do you want to refine? "))
+                        amount = int(input("How many units of"+
+                                           f" {selected_resource} "+
+                                           "do you want to refine? "))
                         if amount <= 0:
                             raise ValueError("Amount must be positive.")
-                        if amount > space_player.raw_inventory[selected_resource]:
-                            raise ValueError("You do not have enough of that resource.")
-                        # Perform refinement
-                        refined_amount = amount * 4  # Factory 1 doubles the input
-                        space_player.raw_inventory[selected_resource] -= amount # Reduce raw inventory
-                        space_player.refined_inventory[selected_resource] += refined_amount # Add to refined inventory
-                        print(f"Refined {amount} units of {selected_resource} into {refined_amount} units of refined {selected_resource}.")
+                        if amount > space_player.raw_inventory\
+                            [selected_resource]:
+                            raise ValueError("You do not have "+
+                                             "enough of that resource.")
+                        ## Perform refinement
+                        refined_amount = amount * 4  ## Factory 1 doubles the input
+                        space_player.raw_inventory[selected_resource] \
+                            -= amount ## Reduce raw inventory
+                        space_player.refined_inventory[selected_resource] \
+                            += refined_amount ## Add to refined inventory
+                        print(f"Refined {amount} units of {selected_resource} "
+                              +f"into {refined_amount} units of refined "
+                              +f"{selected_resource}.")
                         break
                     else:
                         raise ValueError("Invalid number")
@@ -205,7 +214,8 @@ class Factory:
         available_resources = []
         inx = 1
         for r in space_player.raw_inventory:
-            if space_player.raw_inventory[r] > 0: # Check if the player has any of this resource
+            if space_player.raw_inventory[r] > 0: 
+                ## Check if the player has any of this resource
                 available_resources.append(r)
                 print(f"{inx}. {r} - {space_player.raw_inventory[r]} units")
                 inx += 1
@@ -216,19 +226,26 @@ class Factory:
         else:
             while True:
                 try:
-                    choice = int(input("Enter the number of the resource you want to refine: "))
+                    choice = int(input("Enter the number of the "+
+                                       "resource you want to refine: "))
                     if 1 <= choice <= len(available_resources):
                         selected_resource = available_resources[choice - 1]
-                        amount = int(input(f"How many units of {selected_resource} do you want to refine? "))
+                        amount = int(input("How many units of"+
+                                           f" {selected_resource} "+
+                                           "do you want to refine? "))
                         if amount <= 0:
                             raise ValueError("Amount must be positive.")
                         if amount > space_player.raw_inventory[selected_resource]:
-                            raise ValueError("You do not have enough of that resource.")
-                        # Perform refinement
-                        refined_amount = amount * 5  # Factory 1 doubles the input
-                        space_player.raw_inventory[selected_resource] -= amount # Reduce raw inventory
-                        space_player.refined_inventory[selected_resource] += refined_amount # Add to refined inventory
-                        print(f"Refined {amount} units of {selected_resource} into {refined_amount} units of refined {selected_resource}.")
+                            raise ValueError("You do not have "+
+                                             "enough of that resource.")                        
+                        refined_amount = amount * 5  ## Factory 1 doubles the input
+                        space_player.raw_inventory[selected_resource] \
+                            -= amount ## Reduce raw inventory
+                        space_player.refined_inventory[selected_resource] \
+                            += refined_amount ## Add to refined inventory
+                        print(f"Refined {amount} units of {selected_resource} "
+                              +f"into {refined_amount} "
+                              +f"units of refined {selected_resource}.")
                         break
                     else:
                         raise ValueError("Invalid number")
@@ -242,7 +259,8 @@ class Factory:
         available_resources = []
         inx = 1
         for r in space_player.raw_inventory:
-            if space_player.raw_inventory[r] > 0: # Check if the player has any of this resource
+            if space_player.raw_inventory[r] > 0: 
+                ## Check if the player has any of this resource
                 available_resources.append(r)
                 print(f"{inx}. {r} - {space_player.raw_inventory[r]} units")
                 inx += 1
@@ -253,19 +271,27 @@ class Factory:
         else:
             while True:
                 try:
-                    choice = int(input("Enter the number of the resource you want to refine: "))
+                    choice = int(input("Enter the number of the "+
+                                       "resource you want to refine: "))
                     if 1 <= choice <= len(available_resources):
                         selected_resource = available_resources[choice - 1]
-                        amount = int(input(f"How many units of {selected_resource} do you want to refine? "))
+                        amount = int(input("How many units of"+
+                                           f" {selected_resource} "+
+                                           "do you want to refine? "))
                         if amount <= 0:
                             raise ValueError("Amount must be positive.")
                         if amount > space_player.raw_inventory[selected_resource]:
-                            raise ValueError("You do not have enough of that resource.")
-                        # Perform refinement
-                        refined_amount = amount * 6  # Factory 1 doubles the input
-                        space_player.raw_inventory[selected_resource] -= amount # Reduce raw inventory
-                        space_player.refined_inventory[selected_resource] += refined_amount # Add to refined inventory
-                        print(f"Refined {amount} units of {selected_resource} into {refined_amount} units of refined {selected_resource}.")
+                            raise ValueError("You do not have "+
+                                             "enough of that resource.")                       
+                        refined_amount = amount * 6  
+                        ## Factory 1 doubles the input
+                        space_player.raw_inventory[selected_resource] \
+                            -= amount # Reduce raw inventory
+                        space_player.refined_inventory[selected_resource] \
+                            += refined_amount # Add to refined inventory
+                        print(f"Refined {amount} units of"+
+                              f" {selected_resource} into {refined_amount} "+
+                              f"units of refined {selected_resource}.")
                         break
                     else:
                         raise ValueError("Invalid number")
@@ -279,7 +305,8 @@ class Factory:
         available_resources = []
         inx = 1
         for r in space_player.refined_inventory:
-            if space_player.refined_inventory[r] > 0: # Check if the player has any of this resource
+            if space_player.refined_inventory[r] > 0: 
+                ## Check if the player has any of this resource
                 available_resources.append(r)
                 print(f"{inx}. {r} - {space_player.refined_inventory[r]} units")
                 inx += 1
@@ -291,19 +318,28 @@ class Factory:
         else:
             while True:
                 try:
-                    choice = int(input("Enter the number of the resource you want to refine: "))
+                    choice = int(input("Enter the number of the "+
+                                       "resource you want to refine: "))
                     if 1 <= choice <= len(available_resources):
                         selected_resource = available_resources[choice - 1]
-                        amount = int(input(f"How many units of {selected_resource} do you want to refine? "))
+                        amount = int(input("How many units of"+
+                                           f" {selected_resource} "+
+                                           "do you want to refine? "))
                         if amount <= 0:
                             raise ValueError("Amount must be positive.")
-                        if amount > space_player.refined_inventory[selected_resource]:
-                            raise ValueError("You do not have enough of that resource.")
-                        # Perform refinement
-                        refined_amount = amount * 7  # Factory 1 doubles the input
-                        space_player.refined_inventory[selected_resource] -= amount # Reduce raw inventory
-                        space_player.compound_inventory[selected_resource] += refined_amount # Add to refined inventory
-                        print(f"Refined {amount} units of {selected_resource} into {refined_amount} units of refined {selected_resource}.")
+                        if amount > space_player.refined_inventory\
+                            [selected_resource]:
+                            raise ValueError("You do not have "+
+                                             "enough of that resource.")
+                        ## Perform refinement
+                        refined_amount = amount * 7  ## Factory 1 doubles the input
+                        space_player.refined_inventory[selected_resource]\
+                              -= amount ## Reduce raw inventory
+                        space_player.compound_inventory[selected_resource]\
+                              += refined_amount ## Add to refined inventory
+                        print(f"Refined {amount} units of {selected_resource}"+
+                              f" into {refined_amount}"+
+                              f" units of refined {selected_resource}.")
                         break
                     else:
                         raise ValueError("Invalid number")

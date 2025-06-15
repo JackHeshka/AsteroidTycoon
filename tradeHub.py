@@ -1,4 +1,6 @@
-"""Here is where the player will be able to trade resources to get more money"""
+"""Here is where the player will be able to 
+trade resources to get more money.
+"""
 import player as Pl 
 
 price_raw: dict[str, int] = {"Iron": 25,
@@ -41,7 +43,9 @@ class tradeHub:
         self.name = name
 
     def trade_resources(self, space_player: Pl.player):
-        """This function will allow the player to trade resources for credits."""
+        """This function will allow the player to 
+        trade resources for credits.
+        """
         print("What category of resource would you like to trade?")
         print("1. Raw Resources")
         print("2. Refined Resources")
@@ -51,7 +55,8 @@ class tradeHub:
             category_choice = input("Enter Number (1-3): ")
             print("=" * 80)
             if category_choice not in ['1', '2', '3']:
-                raise ValueError("Invalid choice. Please enter a number between 1 and 3.")
+                raise ValueError("Invalid choice. Please "+
+                                 "enter a number between 1 and 3.")
         except ValueError as e:
             print(f"Error: {e}. Please try again.")
             return
@@ -74,7 +79,8 @@ class tradeHub:
             resource_type = "compound_inventory"
         loop = 1
         for player_resource, amount in inventory.items():
-            print(f"{loop}. {player_resource} inventory: {amount} (worth {price_dict[player_resource]} credits).")
+            print(f"{loop}. {player_resource} inventory: {amount} "+
+                  f"(worth {price_dict[player_resource]} credits).")
             loop += 1
         print("\n" + "=" * 80)
         print("Would you like to:")
@@ -83,46 +89,42 @@ class tradeHub:
         print("=" * 80)
         sell_choice = input("Enter Number (1-2): ")
         print("=" * 80)
- 
         if sell_choice == '1':
             while True:
                 try:
-                    resource_num = int(input("Enter the number of the resource you want to sell: "))
+                    resource_num = int(input("Enter the number of the "
+                                             +" you want to sell: "))
                     resource_names = list(inventory)
                     if resource_num < 1 or resource_num > len(resource_names):
                         raise IndexError("Invalid resource number.")
                     resource_name = resource_names[resource_num - 1]
                     if inventory[resource_name] == 0:
-                        raise IndexError("You have no units of this resource to sell.")
+                        raise IndexError("You have no units "+
+                                         "of this resource to sell.")
                     break
                 except IndexError as e:
                     print(f"Error: {e}. Please try again.")
                 except:
                     print("Something went wrong, please try again")
-
             price = price_dict.get(resource_name, 0)
             total_credits = price * inventory[resource_name]
-
             print(resource_type)
-
             print(f"You started with {space_player.money} credits")
-            space_player.remove_resource(resource_type, resource_name, total_credits)
-            print(f"Sold {inventory[resource_name]} {resource_name} for {total_credits} credits.")
+            space_player.remove_resource\
+                (resource_type, resource_name, total_credits)
+            print(f"Sold {inventory[resource_name]} "+
+                  f"{resource_name} for {total_credits} credits.")
             print(f"You now have {space_player.money} credits")
-
-
-
         elif sell_choice == '2':
             total_credits = 0
             for resource_name, amount in inventory.items():
                 price = price_dict.get(resource_name, 0)
                 if amount > 0:
                     total_credits = price * amount
-                    print(f"Sold {amount} {resource_name} for {price * amount} credits.")
-                    space_player.remove_resource(resource_type, resource_name, total_credits)
+                    print(f"Sold {amount} {resource_name} for"+
+                          f" {price * amount} credits.")
+                    space_player.remove_resource\
+                        (resource_type, resource_name, total_credits)
             print(f"Total credits earned: {total_credits}")
         else:
-            print("Invalid choice.")
-            
-
-            
+            print("Invalid choice.")           

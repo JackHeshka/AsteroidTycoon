@@ -4,7 +4,6 @@ import factory as F
 from typing import Dict, Any
 from typing import List, Optional
 
-# these are the tile types that the player can buy and add to their space station
 
 
 class spaceStation:

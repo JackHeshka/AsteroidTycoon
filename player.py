@@ -38,18 +38,19 @@ class player:
                                                    "Lead": 0,
                                                    "Lithium": 0}
         
-        self.factory_info: dict[str, int] = {"Factory 1": {"num":0,
-                                                            "description": "Basic refinerys that double your input"},
-                                                "Factory 2": {"num":0,
-                                                            "description": "Advanced refinerys that triple your input"},
-                                                "Factory 3": {"num":0,
-                                                            "description": "High-tech refinerys that quadruple your input"},   
-                                                "Factory 4": {"num":0,
-                                                            "description": "Super refinerys that quintuple your input"},
-                                                "Factory 5": {"num":0,
-                                                            "description": "Mega refinerys that sextuple your input"},
-                                                "Factory 6": {"num":0,
-                                                            "description": "Ultra refinerys that septuple your input"}}
+        self.factory_info: dict[str, int] = {
+        "Factory 1": {"num":0,
+                    "description": "Basic refinerys that double your input"},
+        "Factory 2": {"num":0,
+                 "description": "Advanced refinerys that triple your input"},
+        "Factory 3": {"num":0,
+             "description": "High-tech refinerys that quadruple your input"},   
+        "Factory 4": {"num":0,
+                 "description": "Super refinerys that quintuple your input"},
+        "Factory 5": {"num":0,
+                   "description": "Mega refinerys that sextuple your input"},
+        "Factory 6": {"num":0,
+                  "description": "Ultra refinerys that septuple your input"}}
         self.health: int = 100
 
 

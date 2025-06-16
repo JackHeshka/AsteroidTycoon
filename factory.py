@@ -1,13 +1,15 @@
 import player as Pl 
 
 class Factory:
-    """Here is where refinement of resources will take place.
+    """
+    Here is where refinement of resources will take place.
     """
     def __init__(self):
         pass
 
     def use_factory(self, space_player: Pl.player):
-        """This function will allow the player to 
+        """
+        This function will allow the player to 
         pick which factory to refine resources in.
         """
         inx = 1 ## number to display for user input
@@ -62,9 +64,10 @@ class Factory:
                 print("=" * 80)
 
     def factory_1(self, space_player: Pl.player):
-        """This function will allow the player to use Factory 1,
-         to double their input.
-         """
+        """
+        This function will allow the player to use Factory 1,
+        to double their input.
+        """
         print(space_player.factory_info["Factory 1"]["description"]+"\n")
         available_resources = []
         inx = 1
@@ -112,7 +115,8 @@ class Factory:
                     print("=" * 80)
     
     def factory_2(self, space_player: Pl.player):
-        """This function will allow the player to use Factory 2.
+        """
+        This function will allow the player to use Factory 2.
         """
         print(space_player.factory_info["Factory 2"]["description"]+"\n")
         available_resources = []
@@ -161,7 +165,9 @@ class Factory:
                     print("=" * 80)
 
     def factory_3(self, space_player: Pl.player):
-        """This function will allow the player to use Factory 3."""
+        """
+        This function will allow the player to use Factory 3.
+        """
         print(space_player.factory_info["Factory 3"]["description"]+"\n")
         available_resources = []
         inx = 1
@@ -209,7 +215,9 @@ class Factory:
                     print("=" * 80)
 
     def factory_4(self, space_player: Pl.player):
-        """This function will allow the player to use Factory 4."""
+        """
+        This function will allow the player to use Factory 4.
+        """
         print(space_player.factory_info["Factory 4"]["description"]+"\n")
         available_resources = []
         inx = 1
@@ -254,7 +262,9 @@ class Factory:
                     print("=" * 80)
 
     def factory_5(self, space_player: Pl.player):
-        """This function will allow the player to use Factory 5."""
+        """
+        This function will allow the player to use Factory 5.
+        """
         print(space_player.factory_info["Factory 5"]["description"]+"\n")
         available_resources = []
         inx = 1
@@ -300,7 +310,9 @@ class Factory:
                     print("=" * 80)
 
     def factory_6(self, space_player: Pl.player):
-        """This function will allow the player to use Factory 6."""
+        """
+        This function will allow the player to use Factory 6.
+        """
         print(space_player.factory_info["Factory 2"]["description"]+"\n")
         available_resources = []
         inx = 1

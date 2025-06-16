@@ -1,4 +1,9 @@
 import player as Pl 
+"""
+If We had more time I would like to rebuild this code, Right now it does not use 
+the class well, When I started building the program I had a differnt idea of where
+this program would go that would have better used the classes.
+"""
 
 class Factory:
     """Here is where refinement of resources will take place.

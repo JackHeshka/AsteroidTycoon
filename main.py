@@ -109,7 +109,7 @@ def establish_mining_operation():
             # Create the planet object
             space_player.planets[planet_name] = Planet.planet\
                 (planet_name, space_player)
-            print(f"\nPurchased mining rights to" +
+            print(f"\nPurchased mining rights to " +
                   f"{space_player.planets[planet_name]}")
             ## Deduct the cost of establishing a mining operation
             Pl.player.spend_money(space_player, planet_cost)
@@ -294,7 +294,7 @@ print("Loading your space station layout...")
 new_station.printStation()  ## Print the station layout
 print("=" * 80)
 print("Welcome to the Space Exploration Game!")
-print(f"Commander {space_player.name}, your account" +
+print(f"Commander {space_player.name}, your account " +
       f"balance is {space_player.money} credits.")
 print("Your space station is shown above.")
 print("=" * 80)

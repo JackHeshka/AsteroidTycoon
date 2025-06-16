@@ -92,8 +92,8 @@ class tradeHub:
         if sell_choice == '1':
             while True:
                 try:
-                    resource_num = int(input("Enter the number of the "
-                                             +" you want to sell: "))
+                    resource_num = int(input("Enter the number of the"
+                                             +" resource you want to sell: "))
                     resource_names = list(inventory)
                     if resource_num < 1 or resource_num > len(resource_names):
                         raise IndexError("Invalid resource number.")

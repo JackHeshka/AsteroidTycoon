@@ -120,7 +120,7 @@ class tradeHub:
             for resource_name, amount in inventory.items():
                 price = price_dict.get(resource_name, 0)
                 if amount > 0:
-                    total_credits = price * amount
+                    total_credits += price * amount
                     print(f"Sold {amount} {resource_name} for"+
                           f" {price * amount} credits.")
                     space_player.remove_resource\
